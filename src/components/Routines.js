@@ -9,6 +9,7 @@ class Routines extends React.Component {
         <RoutineComp
           routine={routine}
           toggleRoutine={this.props.toggleRoutine}
+          zoomRoutine={this.props.zoomRoutine}
         />
       ));
   }

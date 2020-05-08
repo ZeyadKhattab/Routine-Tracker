@@ -3,6 +3,8 @@ import "./App.css";
 
 import Routines from "./components/Routines.js";
 import AddRoutine from "./components/AddRoutine";
+import RoutineZoomed from "./components/RoutineZoomed";
+
 import {
   getRoutines,
   getRoutineByName,
@@ -24,6 +26,10 @@ class App extends React.Component {
     this.setState({ routines: getRoutines(), add: false });
     console.log("didMount");
   }
+  zoomRoutine = (e) => {
+    console.log(e.target.textContent);
+    this.setState({ zoomOn: getRoutineByName(e.target.textContent) });
+  };
   handleClick = (e) => {
     this.setState({ add: true });
   };
@@ -33,6 +39,8 @@ class App extends React.Component {
   };
   render() {
     if (this.state.add === true) return <AddRoutine />;
+    if (this.state.zoomOn)
+      return <RoutineZoomed routine={this.state.zoomOn}></RoutineZoomed>;
     if (this.state.routineDone)
       return (
         <RoutineComp zoom={true} routine={this.state.routineDone}></RoutineComp>
@@ -42,6 +50,7 @@ class App extends React.Component {
         <Routines
           routines={this.state.routines}
           toggleRoutine={this.toggleRoutine}
+          zoomRoutine={this.zoomRoutine}
         />
         <input
           type="submit"

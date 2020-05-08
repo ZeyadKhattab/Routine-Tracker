@@ -1,5 +1,5 @@
 import React from "react";
-import { getDayOfMonth, getMonth } from "../backend/helpers";
+import { getDayOfMonth, getMonth, getArray } from "../backend/helpers";
 import { markRoutineAsDone } from "../backend/routes";
 import App from "../App";
 export default class RoutineComp extends React.Component {
@@ -11,10 +11,12 @@ export default class RoutineComp extends React.Component {
     markRoutineAsDone(this.props.routine.name, addedInfo, minutes);
     this.setState({ done: true });
   };
+
   state = { done: false };
   render() {
     let routine = this.props.routine;
     if (this.state.done) return <App></App>;
+
     if (this.props.zoom) {
       return (
         <div>
@@ -32,14 +34,28 @@ export default class RoutineComp extends React.Component {
       );
     }
     return (
-      <div>
+      <div style={itemStyle}>
+        <div
+          style={{ display: "inline" }}
+          onClick={this.props.zoomRoutine.bind(this)}
+        >
+          {routine.name}
+        </div>
         <input
           type="checkbox"
           checked={routine.done[getMonth()][getDayOfMonth()]}
           onChange={this.props.toggleRoutine.bind(this, routine.name)}
+          style={{
+            float: "right",
+          }}
         ></input>
-        {routine.name}
       </div>
     );
   }
 }
+
+const itemStyle = {
+  background: "#f4f4f4",
+  padding: "10px",
+  borderBottom: "1px #ccc dotted",
+};
