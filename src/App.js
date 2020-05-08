@@ -4,13 +4,12 @@ import "./App.css";
 import Routines from "./components/Routines.js";
 import AddRoutine from "./components/AddRoutine";
 import RoutineZoomed from "./components/RoutineZoomed";
-
+import RoutineDone from "./components/RoutineDone";
 import {
   getRoutines,
   getRoutineByName,
   toggleRoutineByName,
 } from "./backend/routes";
-import RoutineComp from "./components/RoutineComp";
 
 class App extends React.Component {
   toggleRoutine = (name, event) => {
@@ -23,28 +22,21 @@ class App extends React.Component {
     }
   };
   componentDidMount() {
-    this.setState({ routines: getRoutines(), add: false });
-    console.log("didMount");
+    this.setState({ routines: getRoutines() });
   }
   zoomRoutine = (e) => {
-    console.log(e.target.textContent);
     this.setState({ zoomOn: getRoutineByName(e.target.textContent) });
   };
-  handleClick = (e) => {
-    this.setState({ add: true });
-  };
+
   state = {
     routines: [],
-    add: false,
   };
   render() {
-    if (this.state.add === true) return <AddRoutine />;
+    if (this.state.add) return <AddRoutine />;
     if (this.state.zoomOn)
       return <RoutineZoomed routine={this.state.zoomOn}></RoutineZoomed>;
     if (this.state.routineDone)
-      return (
-        <RoutineComp zoom={true} routine={this.state.routineDone}></RoutineComp>
-      );
+      return <RoutineDone routine={this.state.routineDone}></RoutineDone>;
     return (
       <div className="App">
         <Routines
@@ -54,7 +46,7 @@ class App extends React.Component {
         />
         <input
           type="submit"
-          onClick={this.handleClick.bind(this)}
+          onClick={() => this.setState({ add: true })}
           value="Add Routine"
         ></input>
       </div>

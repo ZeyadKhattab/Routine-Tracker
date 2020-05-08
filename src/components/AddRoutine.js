@@ -24,7 +24,6 @@ class AddRoutine extends React.Component {
   state = { done: false };
   render() {
     if (this.state.done) return <App />;
-    let routine = this.props.routine;
     return (
       <div>
         <form>

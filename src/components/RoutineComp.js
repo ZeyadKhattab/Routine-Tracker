@@ -1,7 +1,6 @@
 import React from "react";
-import { getDayOfMonth, getMonth, getArray } from "../backend/helpers";
+import { getDayOfMonth, getMonth } from "../backend/helpers";
 import { markRoutineAsDone } from "../backend/routes";
-import App from "../App";
 export default class RoutineComp extends React.Component {
   handleSubmit = (e) => {
     e.preventDefault();
@@ -15,7 +14,6 @@ export default class RoutineComp extends React.Component {
   state = { done: false };
   render() {
     let routine = this.props.routine;
-    if (this.state.done) return <App></App>;
 
     if (this.props.zoom) {
       return (
