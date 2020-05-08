@@ -3,13 +3,22 @@ import "./App.css";
 
 import Routines from "./components/Routines.js";
 import AddRoutine from "./components/AddRoutine";
-import { getRoutines, getRoutineByName } from "./backend/routes";
+import {
+  getRoutines,
+  getRoutineByName,
+  toggleRoutineByName,
+} from "./backend/routes";
+import RoutineComp from "./components/RoutineComp";
 
 class App extends React.Component {
   toggleRoutine = (name, event) => {
-    getRoutineByName(name).toggle();
-    console.log(typeof getRoutineByName(name));
-    this.componentDidMount();
+    toggleRoutineByName(name);
+    this.setState({ routines: getRoutines() });
+    if (event.target.checked) {
+      this.setState({
+        routineDone: getRoutineByName(name),
+      });
+    }
   };
   componentDidMount() {
     this.setState({ routines: getRoutines(), add: false });
@@ -24,6 +33,10 @@ class App extends React.Component {
   };
   render() {
     if (this.state.add === true) return <AddRoutine />;
+    if (this.state.routineDone)
+      return (
+        <RoutineComp zoom={true} routine={this.state.routineDone}></RoutineComp>
+      );
     return (
       <div className="App">
         <Routines
