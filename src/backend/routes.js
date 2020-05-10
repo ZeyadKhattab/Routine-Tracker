@@ -22,7 +22,7 @@ const markRoutineAsDone = (name, addedInfo, minutes) => {
   getRoutineByName(name).markDone(addedInfo, minutes);
   save("routines", JSON.stringify(routines));
 };
-const deleteRoutineByName = (name) => {
+const deactivateRoutineByName = (name) => {
   const month = getMonth();
   const day = getDayOfMonth();
   for (const routine of routines)
@@ -33,12 +33,29 @@ const deleteRoutineByName = (name) => {
     }
   save("routines", JSON.stringify(routines));
 };
-
+const activateRoutineByName = (name) => {
+  const month = getMonth();
+  const day = getDayOfMonth();
+  for (const routine of routines)
+    if (routine.name === name) {
+      for (let m = month; m < 12; m++)
+        for (let d = m === month ? day : 0; d < 31; d++)
+          routine.active[m][d] = true;
+    }
+  save("routines", JSON.stringify(routines));
+};
+const deletRoutineByName = (name) => {
+  for (let i = 0; i < routines.length; i++)
+    if (routines[i].name === name) routines.splice(i);
+  save("routines", JSON.stringify(routines));
+};
 export {
   getRoutines,
   getRoutineByName,
   addRoutine,
   toggleRoutineByName,
   markRoutineAsDone,
-  deleteRoutineByName,
+  deactivateRoutineByName,
+  deletRoutineByName,
+  activateRoutineByName,
 };
