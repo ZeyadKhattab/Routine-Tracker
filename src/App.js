@@ -1,6 +1,6 @@
 import React from "react";
 import "./App.css";
-
+import "bootstrap/dist/css/bootstrap.min.css";
 import Routines from "./components/Routines.js";
 import AddRoutine from "./components/AddRoutine";
 import RoutineZoomed from "./components/RoutineZoomed";
