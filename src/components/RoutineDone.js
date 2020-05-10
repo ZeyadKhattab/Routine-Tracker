@@ -23,7 +23,7 @@ export default class RoutineDone extends React.Component {
           <input type="text" placeholder="MinutesNeeded" name="minutes"></input>
           <input type="submit" onClick={this.handleSubmit.bind(this)}></input>
         </form>
-        <Graph></Graph>
+        <Graph routine={routine}></Graph>
       </div>
     );
   }
