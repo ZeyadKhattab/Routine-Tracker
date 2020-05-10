@@ -20,6 +20,7 @@ const getArray = (n, m, defaultVal) => {
 };
 const readFromLocalStorage = (key) => localStorage.getItem(key);
 const save = (key, value) => localStorage.setItem(key, value);
+const getDaysInMonths = (month, year) => new Date(year, month + 1, 0).getDate();
 
 export {
   getDayOfWeek,
@@ -28,4 +29,5 @@ export {
   getArray,
   readFromLocalStorage,
   save,
+  getDaysInMonths,
 };

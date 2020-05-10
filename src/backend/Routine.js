@@ -16,8 +16,8 @@ export default class Routine {
     this.days = days;
     this.done = getArray(12, 31, false);
     this.info = getArray(12, 31, "");
-    this.active = getArray(12, 31, false);
-    this.timeNeeded = getArray(12, 31);
+    this.active = getArray(12, 31, true);
+    this.timeNeeded = getArray(12, 31, 0);
   }
   toggle = () => {
     let month = getMonth(),
