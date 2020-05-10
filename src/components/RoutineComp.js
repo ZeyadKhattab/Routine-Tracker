@@ -15,22 +15,6 @@ export default class RoutineComp extends React.Component {
   render() {
     let routine = this.props.routine;
 
-    if (this.props.zoom) {
-      return (
-        <div>
-          <h1>Congrats on finishin {routine.name}</h1>
-          <form>
-            <input type="text" placeholder="Details" name="addedInfo"></input>
-            <input
-              type="text"
-              placeholder="MinutesNeeded"
-              name="minutes"
-            ></input>
-            <input type="submit" onClick={this.handleSubmit.bind(this)}></input>
-          </form>
-        </div>
-      );
-    }
     return (
       <div style={itemStyle}>
         <div
