@@ -1,6 +1,7 @@
 import React from "react";
 import { markRoutineAsDone } from "../backend/routes";
 import App from "../App";
+import Graph from "./Graph";
 export default class RoutineDone extends React.Component {
   handleSubmit = (e) => {
     e.preventDefault();
@@ -22,6 +23,7 @@ export default class RoutineDone extends React.Component {
           <input type="text" placeholder="MinutesNeeded" name="minutes"></input>
           <input type="submit" onClick={this.handleSubmit.bind(this)}></input>
         </form>
+        <Graph></Graph>
       </div>
     );
   }
