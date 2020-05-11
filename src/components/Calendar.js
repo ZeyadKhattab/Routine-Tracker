@@ -17,7 +17,7 @@ class Calendar extends React.Component {
           routine.active[m][d] &&
           routine.days[getDayOfWeekGivenMYD(m, 2020, d)]
         )
-          data.push([new Date(2020, m, d + 1), routine.done[m][d] ? 1 : -1]);
+          data.push([new Date(2020, m, d + 1), routine.done[m][d] ? 1 : 0]);
     }
 
     return data;
@@ -32,10 +32,7 @@ class Calendar extends React.Component {
             chartType="Calendar"
             loader={<div>Loading Chart</div>}
             data={this.getData()}
-            // options={{
-            //   intervals: { style: "sticks" },
-            //   legend: "none",
-            // }}
+            options={options}
           />
         </div>
       </div>
@@ -48,3 +45,15 @@ const getDayOfWeekGivenMYD = (m, y, d) => {
   return ans;
 };
 export default Calendar;
+var options = {
+  title: "Red Sox Attendance",
+  height: 350,
+  calendar: {
+    cellColor: {
+      stroke: "#6B8E23",
+      strokeOpacity: 0.6,
+      strokeWidth: 1,
+    },
+  },
+  colors: ["#FF0000", "#00FF00"],
+};

@@ -8,7 +8,7 @@ import {
   deletRoutineByName,
 } from "../backend/routes";
 import Card from "react-bootstrap/Card";
-import pic from "../assets/sports.png";
+import pic from "../assets/sports1.png";
 import Calendar from "./Calendar";
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
