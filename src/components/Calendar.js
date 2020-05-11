@@ -1,6 +1,6 @@
 import React from "react";
 import Chart from "react-google-charts";
-import { getDaysInMonths, getDayOfWeek } from "../backend/helpers";
+import { getDaysInMonths } from "../backend/helpers";
 class Calendar extends React.Component {
   getData = () => {
     const routine = this.props.routine;
@@ -11,7 +11,6 @@ class Calendar extends React.Component {
         { type: "number", id: "Won/Loss" },
       ],
     ];
-    // data.push([new Date(2013, 2, 4), 10]);
     for (let m = 0; m < 12; m++) {
       for (let d = 0; d < getDaysInMonths(m, 2020); d++)
         if (

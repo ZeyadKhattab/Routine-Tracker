@@ -10,6 +10,9 @@ import {
 import Card from "react-bootstrap/Card";
 import pic from "../assets/sports.png";
 import Calendar from "./Calendar";
+import Container from "react-bootstrap/Container";
+import Row from "react-bootstrap/Row";
+import Col from "react-bootstrap/Col";
 import { getMonth, getDayOfMonth, getDayOfWeek } from "../backend/helpers";
 export default class RoutineZoomed extends React.Component {
   state = {
@@ -75,24 +78,50 @@ export default class RoutineZoomed extends React.Component {
 
     if (this.state.done) return <App></App>;
     return (
-      <div>
+      <div style={style}>
         <Button variant="primary" onClick={() => this.setState({ done: true })}>
           Back
         </Button>{" "}
-        <Card style={{ width: "18rem" }}>
-          <Card.Img
-            variant="top"
-            src={/* "https://i.ibb.co/5M3PbSr/sports.png" */ pic}
-          />
-          <Card.Body>
-            <Card.Title>{routine.name}</Card.Title>
-          </Card.Body>
-        </Card>
-        {<Graph routine={routine}></Graph>}
-        {<Calendar routine={routine}></Calendar>}
+        <Container>
+          <Row>
+            <Col style={containerStyle}>
+              <Card style={{ justifyContent: "center" }}>
+                <Card.Img
+                  variant="top"
+                  src={/* "https://i.ibb.co/5M3PbSr/sports.png" */ pic}
+                />
+                <Card.Body>
+                  <Card.Title>{routine.name}</Card.Title>
+                </Card.Body>
+              </Card>
+            </Col>
+            <Col style={containerStyle}>
+              {<Graph routine={routine}></Graph>}
+            </Col>
+          </Row>
+          <Row className="justifyContentMdCenter">
+            <Col style={containerStyle}>
+              <Calendar
+                style={{ justifyContent: "center" }}
+                routine={routine}
+              ></Calendar>
+            </Col>
+          </Row>
+        </Container>
         {this.activateDeactivateButton()}
         {this.getStatus()}
       </div>
     );
   }
 }
+
+const style = {
+  backgroundColor: "#D3D3D3",
+};
+
+const containerStyle = {
+  // borderStyle: "solid",
+  padding: "5px",
+  margin: "20px",
+  borderRadius: "10px",
+};
