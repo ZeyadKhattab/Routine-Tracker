@@ -10,7 +10,7 @@ import {
 import Card from "react-bootstrap/Card";
 import pic from "../assets/sports.png";
 import Calendar from "./Calendar";
-import { getMonth, getDayOfMonth } from "../backend/helpers";
+import { getMonth, getDayOfMonth, getDayOfWeek } from "../backend/helpers";
 export default class RoutineZoomed extends React.Component {
   state = {
     done: false,
@@ -55,13 +55,30 @@ export default class RoutineZoomed extends React.Component {
         </div>
       );
   };
-
+  getStatus = () => {
+    const routine = this.props.routine;
+    const month = getMonth();
+    const dayOfMonth = getDayOfMonth();
+    if (!routine.active[month][dayOfMonth]) return <h1>NOT ACTIVE</h1>;
+    const dayOfWeek = getDayOfWeek();
+    if (!routine.days[dayOfWeek]) return <h1>NOT SCHEDULED TODAY</h1>;
+    return routine.done[month][dayOfMonth] ? (
+      <h1>
+        {`You did it today in ${routine.timeNeeded[month][dayOfMonth]} minutes and info was ${routine.info[month][dayOfMonth]}`}{" "}
+      </h1>
+    ) : (
+      <h1>You still have to do it</h1>
+    );
+  };
   render() {
     const routine = this.props.routine;
 
     if (this.state.done) return <App></App>;
     return (
       <div>
+        <Button variant="primary" onClick={() => this.setState({ done: true })}>
+          Back
+        </Button>{" "}
         <Card style={{ width: "18rem" }}>
           <Card.Img
             variant="top"
@@ -74,6 +91,7 @@ export default class RoutineZoomed extends React.Component {
         {<Graph routine={routine}></Graph>}
         {<Calendar routine={routine}></Calendar>}
         {this.activateDeactivateButton()}
+        {this.getStatus()}
       </div>
     );
   }
