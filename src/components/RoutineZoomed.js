@@ -1,4 +1,5 @@
 import React from "react";
+import Alert from "./Alert";
 import Graph from "./Graph";
 import Button from "react-bootstrap/Button";
 import App from "../App";
@@ -19,6 +20,7 @@ export default class RoutineZoomed extends React.Component {
   state = {
     done: false,
   };
+
   activateDeactivateButton = () => {
     const month = getMonth();
     const dayOfMonth = getDayOfMonth();
@@ -74,6 +76,14 @@ export default class RoutineZoomed extends React.Component {
       <h1>You still have to do it</h1>
     );
   };
+  showAlert() {
+    const routine = this.props.routine;
+    const status = routine.todayStatus();
+    if (status === 1)
+      return <Alert variant="success" header="Congrats"></Alert>;
+    else if (status === -1)
+      return <Alert variant="danger" header="You still have time!"></Alert>;
+  }
   render() {
     const routine = this.props.routine;
 
@@ -83,6 +93,7 @@ export default class RoutineZoomed extends React.Component {
         <Button variant="primary" onClick={() => this.setState({ done: true })}>
           Back
         </Button>{" "}
+        {this.showAlert()}
         <Container>
           <Row>
             <Col style={containerStyle}>

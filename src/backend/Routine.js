@@ -1,4 +1,4 @@
-import { getDayOfMonth, getMonth, getArray } from "./helpers";
+import { getDayOfMonth, getMonth, getArray, getDayOfWeek } from "./helpers";
 export default class Routine {
   constructor(
     name,
@@ -30,5 +30,13 @@ export default class Routine {
     this.done[month][day] = true;
     this.info[month][day] = addedInfo;
     this.timeNeeded[month][day] = minutes;
+  };
+  todayStatus = () => {
+    const month = getMonth();
+    const dayOfMonth = getDayOfMonth();
+    const dayOfWeek = getDayOfWeek();
+    if (this.days[dayOfWeek] && this.active[month][dayOfMonth])
+      return this.done[month][dayOfMonth] ? 1 : -1;
+    else return 0;
   };
 }
