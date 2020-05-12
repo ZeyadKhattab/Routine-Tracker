@@ -13,6 +13,7 @@ import Calendar from "./Calendar";
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
+import WeeklyBarChart from "./WeeklyBarChart";
 import { getMonth, getDayOfMonth, getDayOfWeek } from "../backend/helpers";
 export default class RoutineZoomed extends React.Component {
   state = {
@@ -110,6 +111,7 @@ export default class RoutineZoomed extends React.Component {
         </Container>
         {this.activateDeactivateButton()}
         {this.getStatus()}
+        <WeeklyBarChart routine={routine}></WeeklyBarChart>
       </div>
     );
   }

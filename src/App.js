@@ -3,10 +3,9 @@ import "./App.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 
 import Routines from "./components/Routines.js";
-import AddRoutine from "./components/AddRoutine";
 import RoutineZoomed from "./components/RoutineZoomed";
 import RoutineDone from "./components/RoutineDone";
-
+import Button from "react-bootstrap/Button";
 import {
   getRoutines,
   getRoutineByName,
@@ -60,17 +59,14 @@ class App extends React.Component {
           </div>
         </div>
         <div style={{ textAlign: "center" }}>
-          <input
-            type="submit"
-            onClick={() => this.setState({ add: true })}
-            value="Add Routine"
-          ></input>
+          <Button href="add" variant="info">
+            Addd Routine
+          </Button>
         </div>
       </div>
     );
   };
   render() {
-    if (this.state.add) return <AddRoutine />;
     if (this.state.zoomOn)
       return <RoutineZoomed routine={this.state.zoomOn}></RoutineZoomed>;
     if (this.state.routineDone)
