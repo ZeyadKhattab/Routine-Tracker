@@ -7,6 +7,7 @@ import RoutineZoomed from "./components/RoutineZoomed";
 import RoutineDone from "./components/RoutineDone";
 import Todos from "./components/Todos";
 import Button from "react-bootstrap/Button";
+import ButtonGroup from "react-bootstrap/ButtonGroup";
 import {
   getTodaysRoutines,
   getRoutineByName,
@@ -34,6 +35,7 @@ class App extends React.Component {
 
   state = {
     routines: [],
+    todo: true,
   };
   home = () => {
     const month = getMonth();
@@ -77,20 +79,38 @@ class App extends React.Component {
       return <RoutineDone routine={this.state.routineDone}></RoutineDone>;
     return (
       <div>
-        <Todos
-          routines={this.state.routines.filter(
-            (routine) => !routine.done[month][dayOfMonth]
-          )}
-          toggleRoutine={this.toggleRoutine}
-          zoomRoutine={this.zoomRoutine}
-        ></Todos>
-        <Done
-          routines={this.state.routines.filter(
-            (routine) => routine.done[month][dayOfMonth]
-          )}
-          toggleRoutine={this.toggleRoutine}
-          zoomRoutine={this.zoomRoutine}
-        ></Done>
+        <ButtonGroup aria-label="Basic example">
+          <Button
+            variant="secondary"
+            onClick={() => this.setState({ todo: true })}
+          >
+            To Do
+          </Button>
+          <Button
+            variant="secondary"
+            onClick={() => this.setState({ todo: false })}
+          >
+            Done
+          </Button>
+        </ButtonGroup>
+        {this.state.todo && (
+          <Todos
+            routines={this.state.routines.filter(
+              (routine) => !routine.done[month][dayOfMonth]
+            )}
+            toggleRoutine={this.toggleRoutine}
+            zoomRoutine={this.zoomRoutine}
+          ></Todos>
+        )}
+        {!this.state.todo && (
+          <Done
+            routines={this.state.routines.filter(
+              (routine) => routine.done[month][dayOfMonth]
+            )}
+            toggleRoutine={this.toggleRoutine}
+            zoomRoutine={this.zoomRoutine}
+          ></Done>
+        )}
       </div>
     );
     // return this.home();
