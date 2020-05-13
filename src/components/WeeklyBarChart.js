@@ -6,7 +6,6 @@ export default class extends React.Component {
     const data = [["Day", "Minutes"]];
     for (let i = 0; i < x.length; i++) {
       data.push([x[i], y[i]]);
-      console.log(x[i], y[i]);
     }
 
     return (

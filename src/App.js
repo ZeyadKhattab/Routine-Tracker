@@ -13,7 +13,7 @@ import {
   toggleRoutineByName,
 } from "./backend/routes";
 import { getMonth, getDayOfMonth } from "./backend/helpers";
-import RoutineCard from "./components/RoutineCard";
+import Done from "./components/Done";
 
 class App extends React.Component {
   toggleRoutine = (name, event) => {
@@ -28,8 +28,8 @@ class App extends React.Component {
   componentDidMount() {
     this.setState({ routines: getTodaysRoutines() });
   }
-  zoomRoutine = (e) => {
-    this.setState({ zoomOn: getRoutineByName(e.target.textContent) });
+  zoomRoutine = (routine, event) => {
+    this.setState({ zoomOn: routine });
   };
 
   state = {
@@ -76,13 +76,22 @@ class App extends React.Component {
     if (this.state.routineDone)
       return <RoutineDone routine={this.state.routineDone}></RoutineDone>;
     return (
-      <Todos
-        routines={this.state.routines.filter(
-          (routine) => !routine.done[month][dayOfMonth]
-        )}
-        toggleRoutine={this.toggleRoutine}
-        zoomRoutine={this.zoomRoutine}
-      ></Todos>
+      <div>
+        <Todos
+          routines={this.state.routines.filter(
+            (routine) => !routine.done[month][dayOfMonth]
+          )}
+          toggleRoutine={this.toggleRoutine}
+          zoomRoutine={this.zoomRoutine}
+        ></Todos>
+        <Done
+          routines={this.state.routines.filter(
+            (routine) => routine.done[month][dayOfMonth]
+          )}
+          toggleRoutine={this.toggleRoutine}
+          zoomRoutine={this.zoomRoutine}
+        ></Done>
+      </div>
     );
     // return this.home();
   }

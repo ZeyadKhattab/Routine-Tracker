@@ -4,10 +4,8 @@ export default class extends React.Component {
   getGraph = () => {
     const { x, y } = getData(this.props.routine);
     const data = [["Week", "Times"]];
-    // console.log(x[0], y[0]);
     for (let i = 0; i < x.length; i++) {
       data.push([x[i], y[i]]);
-      console.log(x[i], y[i]);
     }
 
     return (
