@@ -1,6 +1,6 @@
 import Card from "react-bootstrap/Card";
 import Button from "react-bootstrap/Button";
-import pic from "../assets/sports1.png";
+// import pic from "../assets/sports1.png";
 import React from "react";
 import { getMonth, getDayOfMonth } from "../backend/helpers";
 import { Link } from "react-router-dom";
@@ -12,7 +12,7 @@ export default class RoutineCard extends React.Component {
     const routineDone = routine.done[month][dayOfMonth];
     return (
       <Card bg="info" style={cardStyle} className="text-center">
-        <Card.Img variant="top" src={pic}></Card.Img>
+        <Card.Img variant="top" src={routine.imageLink}></Card.Img>
 
         <Card.Body>
           <Card.Title>

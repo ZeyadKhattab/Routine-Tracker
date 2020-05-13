@@ -128,10 +128,6 @@ const flexItemStyle = { flex: "1", border: "1px #ccc solid", width: "50%" };
 const getPercentageDone = (routines) => {
   const month = getMonth();
   const dayOfMonth = getDayOfMonth();
-  console.log(
-    routines.filter((routine) => routine.done[month][dayOfMonth]).length,
-    routines.length
-  );
   return (
     (routines.filter((routine) => routine.done[month][dayOfMonth]).length /
       routines.length) *

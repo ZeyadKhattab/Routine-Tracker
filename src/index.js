@@ -8,6 +8,7 @@ import Navbar from "react-bootstrap/Navbar";
 import Nav from "react-bootstrap/Nav";
 import AddRoutine from "./components/AddRoutine";
 import Help from "./components/Help";
+import ViewRoutines from "./components/ViewRoutines";
 ReactDOM.render(
   <Router>
     <React.StrictMode>
@@ -16,6 +17,7 @@ ReactDOM.render(
         <Nav className="mr-auto">
           <Nav.Link href="add">Add</Nav.Link>
           <Nav.Link href="help">Help</Nav.Link>
+          <Nav.Link href="viewAll">All Routines</Nav.Link>
         </Nav>
       </Navbar>
 
@@ -25,6 +27,9 @@ ReactDOM.render(
         </Route>
         <Route exact path="/help">
           <Help />
+        </Route>
+        <Route exact path="/viewAll">
+          <ViewRoutines />
         </Route>
         <Route exact path="/">
           <App></App>

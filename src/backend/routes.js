@@ -52,7 +52,10 @@ const activateRoutineByName = (name) => {
 };
 const deletRoutineByName = (name) => {
   for (let i = 0; i < routines.length; i++)
-    if (routines[i].name === name) routines.splice(i);
+    if (routines[i].name === name) {
+      routines.splice(i);
+      break;
+    }
   save("routines", JSON.stringify(routines));
 };
 const getAcitveRoutines = () => {

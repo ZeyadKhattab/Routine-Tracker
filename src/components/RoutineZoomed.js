@@ -9,7 +9,7 @@ import {
   deletRoutineByName,
 } from "../backend/routes";
 import Card from "react-bootstrap/Card";
-import pic from "../assets/sports1.png";
+// import pic from "../assets/sports1.png";
 import Calendar from "./Calendar";
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
@@ -98,10 +98,7 @@ export default class RoutineZoomed extends React.Component {
           <Row>
             <Col style={containerStyle}>
               <Card style={{ justifyContent: "center" }}>
-                <Card.Img
-                  variant="top"
-                  src={/* "https://i.ibb.co/5M3PbSr/sports.png" */ pic}
-                />
+                <Card.Img variant="top" src={routine.imageLink} />
                 <Card.Body>
                   <Card.Title>{routine.name}</Card.Title>
                 </Card.Body>
