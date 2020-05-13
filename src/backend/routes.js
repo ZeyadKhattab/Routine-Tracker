@@ -1,5 +1,11 @@
 import Routine from "./Routine";
-import { readFromLocalStorage, save, getDayOfMonth, getMonth } from "./helpers";
+import {
+  readFromLocalStorage,
+  save,
+  getDayOfMonth,
+  getMonth,
+  getDayOfWeek,
+} from "./helpers";
 const getRoutines = () =>
   JSON.parse(readFromLocalStorage("routines")).map((routine) =>
     Object.assign(new Routine(), routine)
@@ -49,6 +55,19 @@ const deletRoutineByName = (name) => {
     if (routines[i].name === name) routines.splice(i);
   save("routines", JSON.stringify(routines));
 };
+const getAcitveRoutines = () => {
+  const month = getMonth();
+  const dayOfMonth = getDayOfMonth();
+  return routines.filter((routine) => routine.active[month][dayOfMonth]);
+};
+const getTodaysRoutines = () => {
+  const month = getMonth();
+  const dayOfMonth = getDayOfMonth();
+  const dayOfWeek = getDayOfWeek();
+  return routines.filter(
+    (routine) => routine.active[month][dayOfMonth] && routine.days[dayOfWeek]
+  );
+};
 export {
   getRoutines,
   getRoutineByName,
@@ -58,4 +77,6 @@ export {
   deactivateRoutineByName,
   deletRoutineByName,
   activateRoutineByName,
+  getAcitveRoutines,
+  getTodaysRoutines,
 };
