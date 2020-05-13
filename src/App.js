@@ -12,6 +12,7 @@ import {
   toggleRoutineByName,
 } from "./backend/routes";
 import { getMonth, getDayOfMonth } from "./backend/helpers";
+import RoutineCard from "./components/RoutineCard";
 
 class App extends React.Component {
   toggleRoutine = (name, event) => {
