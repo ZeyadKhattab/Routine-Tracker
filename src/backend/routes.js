@@ -19,8 +19,8 @@ const toggleRoutineByName = (name) => {
   getRoutineByName(name).toggle();
   save("routines", JSON.stringify(routines));
 };
-const addRoutine = (name, type, weekSchedule) => {
-  const newRoutine = new Routine(name, type, weekSchedule);
+const addRoutine = (name, type, weekSchedule, time, url) => {
+  const newRoutine = new Routine(name, type, weekSchedule, name, url);
   routines.push(newRoutine);
   save("routines", JSON.stringify(routines));
 };

@@ -1,5 +1,4 @@
 import React from "react";
-import RoutineComp from "./RoutineComp";
 import RoutineCard from "./RoutineCard";
 
 export default class Todos extends React.Component {

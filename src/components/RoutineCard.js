@@ -4,7 +4,6 @@ import pic from "../assets/sports1.png";
 import React from "react";
 import { getMonth, getDayOfMonth } from "../backend/helpers";
 import { Link } from "react-router-dom";
-import RoutineZoomed from "./RoutineZoomed";
 export default class RoutineCard extends React.Component {
   render() {
     const routine = this.props.routine;

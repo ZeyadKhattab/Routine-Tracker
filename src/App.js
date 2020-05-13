@@ -8,6 +8,7 @@ import RoutineDone from "./components/RoutineDone";
 import Todos from "./components/Todos";
 import Button from "react-bootstrap/Button";
 import ButtonGroup from "react-bootstrap/ButtonGroup";
+import ProgressBar from "react-bootstrap/ProgressBar";
 import {
   getTodaysRoutines,
   getRoutineByName,
@@ -77,6 +78,7 @@ class App extends React.Component {
       return <RoutineZoomed routine={this.state.zoomOn}></RoutineZoomed>;
     if (this.state.routineDone)
       return <RoutineDone routine={this.state.routineDone}></RoutineDone>;
+    const routines = this.state.routines;
     return (
       <div>
         <ButtonGroup aria-label="Basic example">
@@ -93,6 +95,12 @@ class App extends React.Component {
             Done
           </Button>
         </ButtonGroup>
+        <ProgressBar
+          striped
+          variant="success"
+          now={getPercentageDone(routines)}
+          label={`${getPercentageDone(routines)}%`}
+        />
         {this.state.todo && (
           <Todos
             routines={this.state.routines.filter(
@@ -117,4 +125,17 @@ class App extends React.Component {
   }
 }
 const flexItemStyle = { flex: "1", border: "1px #ccc solid", width: "50%" };
+const getPercentageDone = (routines) => {
+  const month = getMonth();
+  const dayOfMonth = getDayOfMonth();
+  console.log(
+    routines.filter((routine) => routine.done[month][dayOfMonth]).length,
+    routines.length
+  );
+  return (
+    (routines.filter((routine) => routine.done[month][dayOfMonth]).length /
+      routines.length) *
+    100
+  );
+};
 export default App;

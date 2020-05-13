@@ -15,10 +15,12 @@ class AddRoutine extends React.Component {
     const form = e.target.parentElement;
     let routineName = form.routine.value;
     let routineTpye = form.type.value;
+    let routineUrl = form.url.value;
+    let routineTime = form.url.time;
     let weekSchedule = [];
     let checkboxList = document.querySelectorAll(".day-item");
     for (const checkbox of checkboxList) weekSchedule.push(checkbox.checked);
-    addRoutine(routineName, routineTpye, weekSchedule);
+    addRoutine(routineName, routineTpye, weekSchedule, routineTime, routineUrl);
     this.setState({ done: true });
   };
   state = { done: false };
@@ -71,6 +73,8 @@ class AddRoutine extends React.Component {
               <input type="checkbox" className="day-item" value={6} /> Sunday
             </li>
           </ul>
+          <input type="text" name="time" placeholder="Time in Minutes"></input>
+          <input type="text" name="url" placeholder="Image url"></input>
           <input type="submit" onClick={this.handleSubmit.bind(this)}></input>
         </form>
       </div>

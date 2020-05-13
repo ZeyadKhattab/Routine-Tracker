@@ -4,20 +4,24 @@ export default class Routine {
     name,
     type,
     days = [false, false, false, false, false, false, false],
-    tag,
     estimation,
-    imageLink = ""
+    imageLink = "",
+    tag
   ) {
     this.name = name;
     this.type = type;
-    this.tag = tag;
+    this.days = days;
     this.estimation = estimation;
     this.imageLink = imageLink;
-    this.days = days;
+    this.tag = tag;
     this.done = getArray(12, 31, false);
     this.info = getArray(12, 31, "");
     this.active = getArray(12, 31, true);
     this.timeNeeded = getArray(12, 31, 0);
+    const month = getMonth();
+    const day = getDayOfMonth();
+    for (let m = month; m < 12; m++)
+      for (let d = m === month ? day : 0; d < 31; d++) this.active[m][d] = true;
   }
   toggle = () => {
     let month = getMonth(),
