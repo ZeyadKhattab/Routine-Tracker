@@ -1,16 +1,17 @@
 import React from "react";
 import "./App.css";
-import "bootstrap/dist/css/bootstrap.min.css";
 
-import Routines from "./components/Routines.js";
+import "bootstrap/dist/css/bootstrap.min.css";
 import RoutineDone from "./components/RoutineDone";
 import Todos from "./components/Todos";
+import Done from "./components/Done";
+
 import Button from "react-bootstrap/Button";
 import ButtonGroup from "react-bootstrap/ButtonGroup";
 import ProgressBar from "react-bootstrap/ProgressBar";
+
 import { getTodaysRoutines, toggleRoutineByName } from "./backend/routes";
 import { getMonth, getDayOfMonth } from "./backend/helpers";
-import Done from "./components/Done";
 
 class App extends React.Component {
   toggleRoutine = (routine, event) => {
@@ -30,37 +31,7 @@ class App extends React.Component {
     routines: [],
     todo: true,
   };
-  home = () => {
-    const month = getMonth();
-    const dayOfMonth = getDayOfMonth();
-    return (
-      <div>
-        <div style={{ display: "flex" }}>
-          <div style={flexItemStyle}>
-            <Routines
-              routines={this.state.routines.filter(
-                (routine) => !routine.done[month][dayOfMonth]
-              )}
-              toggleRoutine={this.toggleRoutine}
-            />
-          </div>
-          <div style={flexItemStyle}>
-            <Routines
-              routines={this.state.routines.filter(
-                (routine) => routine.done[month][dayOfMonth]
-              )}
-              toggleRoutine={this.toggleRoutine}
-            />
-          </div>
-        </div>
-        <div style={{ textAlign: "center" }}>
-          <Button href="add" variant="info">
-            Addd Routine
-          </Button>
-        </div>
-      </div>
-    );
-  };
+
   render() {
     const month = getMonth();
     const dayOfMonth = getDayOfMonth();
@@ -108,7 +79,6 @@ class App extends React.Component {
     );
   }
 }
-const flexItemStyle = { flex: "1", border: "1px #ccc solid", width: "50%" };
 const getPercentageDone = (routines) => {
   const month = getMonth();
   const dayOfMonth = getDayOfMonth();
