@@ -17,12 +17,7 @@ export default class RoutineComp extends React.Component {
 
     return (
       <div style={itemStyle}>
-        <div
-          style={{ display: "inline" }}
-          onClick={this.props.zoomRoutine.bind(this)}
-        >
-          {routine.name}
-        </div>
+        <div style={{ display: "inline" }}>{routine.name}</div>
         <input
           type="checkbox"
           checked={routine.done[getMonth()][getDayOfMonth()]}

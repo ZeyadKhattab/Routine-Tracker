@@ -8,11 +8,7 @@ export default class Done extends React.Component {
     return (
       <div style={flexContainerStyle}>
         {routines.map((routine) => (
-          <RoutineCard
-            routine={routine}
-            toggleRoutine={this.props.toggleRoutine}
-            zoomRoutine={this.props.zoomRoutine}
-          />
+          <RoutineCard routine={routine} />
         ))}
       </div>
     );

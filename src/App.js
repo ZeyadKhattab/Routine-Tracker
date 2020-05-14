@@ -3,36 +3,28 @@ import "./App.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 
 import Routines from "./components/Routines.js";
-import RoutineZoomed from "./components/RoutineZoomed";
 import RoutineDone from "./components/RoutineDone";
 import Todos from "./components/Todos";
 import Button from "react-bootstrap/Button";
 import ButtonGroup from "react-bootstrap/ButtonGroup";
 import ProgressBar from "react-bootstrap/ProgressBar";
-import {
-  getTodaysRoutines,
-  getRoutineByName,
-  toggleRoutineByName,
-} from "./backend/routes";
+import { getTodaysRoutines, toggleRoutineByName } from "./backend/routes";
 import { getMonth, getDayOfMonth } from "./backend/helpers";
 import Done from "./components/Done";
 
 class App extends React.Component {
-  toggleRoutine = (name, event) => {
-    toggleRoutineByName(name);
+  toggleRoutine = (routine, event) => {
+    toggleRoutineByName(routine.name);
     this.setState({ routines: getTodaysRoutines() });
     if (event.target.checked) {
       this.setState({
-        routineDone: getRoutineByName(name),
+        routineDone: routine,
       });
     }
   };
   componentDidMount() {
     this.setState({ routines: getTodaysRoutines() });
   }
-  zoomRoutine = (routine, event) => {
-    this.setState({ zoomOn: routine });
-  };
 
   state = {
     routines: [],
@@ -50,7 +42,6 @@ class App extends React.Component {
                 (routine) => !routine.done[month][dayOfMonth]
               )}
               toggleRoutine={this.toggleRoutine}
-              zoomRoutine={this.zoomRoutine}
             />
           </div>
           <div style={flexItemStyle}>
@@ -59,7 +50,6 @@ class App extends React.Component {
                 (routine) => routine.done[month][dayOfMonth]
               )}
               toggleRoutine={this.toggleRoutine}
-              zoomRoutine={this.zoomRoutine}
             />
           </div>
         </div>
@@ -74,8 +64,6 @@ class App extends React.Component {
   render() {
     const month = getMonth();
     const dayOfMonth = getDayOfMonth();
-    if (this.state.zoomOn)
-      return <RoutineZoomed routine={this.state.zoomOn}></RoutineZoomed>;
     if (this.state.routineDone)
       return <RoutineDone routine={this.state.routineDone}></RoutineDone>;
     const routines = this.state.routines;
@@ -107,7 +95,6 @@ class App extends React.Component {
               (routine) => !routine.done[month][dayOfMonth]
             )}
             toggleRoutine={this.toggleRoutine}
-            zoomRoutine={this.zoomRoutine}
           ></Todos>
         )}
         {!this.state.todo && (
@@ -115,13 +102,10 @@ class App extends React.Component {
             routines={this.state.routines.filter(
               (routine) => routine.done[month][dayOfMonth]
             )}
-            toggleRoutine={this.toggleRoutine}
-            zoomRoutine={this.zoomRoutine}
           ></Done>
         )}
       </div>
     );
-    // return this.home();
   }
 }
 const flexItemStyle = { flex: "1", border: "1px #ccc solid", width: "50%" };

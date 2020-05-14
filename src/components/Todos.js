@@ -11,7 +11,7 @@ export default class Todos extends React.Component {
           <RoutineCard
             routine={routine}
             toggleRoutine={this.props.toggleRoutine}
-            zoomRoutine={this.props.zoomRoutine}
+            doneButton={true}
           />
         ))}
       </div>
