@@ -2,7 +2,6 @@ import React from "react";
 import Alert from "./Alert";
 import Graph from "./Graph";
 import Button from "react-bootstrap/Button";
-import App from "../App";
 import {
   deactivateRoutineByName,
   activateRoutineByName,
@@ -17,10 +16,6 @@ import Col from "react-bootstrap/Col";
 import WeeklyBarChart from "./WeeklyBarChart";
 import { getMonth, getDayOfMonth, getDayOfWeek } from "../backend/helpers";
 export default class RoutineZoomed extends React.Component {
-  state = {
-    done: false,
-  };
-
   activateDeactivateButton = () => {
     const month = getMonth();
     const dayOfMonth = getDayOfMonth();
@@ -31,8 +26,8 @@ export default class RoutineZoomed extends React.Component {
           variant="warning"
           onClick={(e) => {
             deactivateRoutineByName(routine.name);
-            this.setState({ done: true });
           }}
+          href="/routines"
         >
           Deactivate
         </Button>
@@ -44,8 +39,8 @@ export default class RoutineZoomed extends React.Component {
             variant="info"
             onClick={(e) => {
               activateRoutineByName(routine.name);
-              this.setState({ done: true });
             }}
+            href="/routines"
           >
             Activate
           </Button>
@@ -53,8 +48,8 @@ export default class RoutineZoomed extends React.Component {
             variant="danger"
             onClick={(e) => {
               deletRoutineByName(routine.name);
-              this.setState({ done: true });
             }}
+            href="/routines"
           >
             Delete
           </Button>
@@ -87,7 +82,6 @@ export default class RoutineZoomed extends React.Component {
   render() {
     const routine = this.props.routine;
 
-    if (this.state.done) return <App></App>;
     return (
       <div style={style}>
         <Button variant="primary" onClick={() => this.setState({ done: true })}>
