@@ -17,8 +17,9 @@ export default class RoutineCard extends React.Component {
         <Card.Body>
           <Card.Title>
             <Link
-              onClick={this.props.zoomRoutine.bind(this, routine)}
+              // onClick={this.props.zoomRoutine.bind(this, routine)}
               style={{ color: "black" }}
+              to={`/routines/${routine.name}`}
             >
               {routine.name}
             </Link>

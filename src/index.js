@@ -3,12 +3,19 @@ import ReactDOM from "react-dom";
 import "./index.css";
 import App from "./App";
 import * as serviceWorker from "./serviceWorker";
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  useParams,
+} from "react-router-dom";
 import Navbar from "react-bootstrap/Navbar";
 import Nav from "react-bootstrap/Nav";
 import AddRoutine from "./components/AddRoutine";
 import Help from "./components/Help";
 import ViewRoutines from "./components/ViewRoutines";
+import RoutineZoomed from "./components/RoutineZoomed";
+import { getRoutineByName } from "./backend/routes";
 ReactDOM.render(
   <Router>
     <React.StrictMode>
@@ -17,7 +24,7 @@ ReactDOM.render(
         <Nav className="mr-auto">
           <Nav.Link href="add">Add</Nav.Link>
           <Nav.Link href="help">Help</Nav.Link>
-          <Nav.Link href="viewAll">All Routines</Nav.Link>
+          <Nav.Link href="routines">All Routines</Nav.Link>
         </Nav>
       </Navbar>
 
@@ -28,18 +35,24 @@ ReactDOM.render(
         <Route exact path="/help">
           <Help />
         </Route>
-        <Route exact path="/viewAll">
+        <Route exact path="/routines">
           <ViewRoutines />
+        </Route>
+        <Route exact path={`/routines/:routineName`}>
+          <Zoom />
         </Route>
         <Route exact path="/">
           <App></App>
         </Route>
       </Switch>
-      {/* <App /> */}
     </React.StrictMode>
   </Router>,
   document.getElementById("root")
 );
+function Zoom() {
+  let { routineName } = useParams();
+  return <RoutineZoomed routine={getRoutineByName(routineName)} />;
+}
 
 // If you want your app to work offline and load faster, you can change
 // unregister() to register() below. Note this comes with some pitfalls.
