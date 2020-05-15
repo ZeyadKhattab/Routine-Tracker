@@ -17,7 +17,7 @@ class AddRoutine extends React.Component {
     let routineName = form.routineName.value;
     let routineTpye = form.type.value;
     let routineUrl = form.url.value;
-    let routineTime = form.url.time;
+    let routineTime = form.time.value;
     let weekSchedule = [];
     let checkboxList = document.querySelectorAll(".day-item");
     for (const checkbox of checkboxList) weekSchedule.push(checkbox.checked);

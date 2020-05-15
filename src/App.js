@@ -17,7 +17,6 @@ class App extends React.Component {
   };
 
   render() {
-    const routines = this.state.routines;
     return (
       <div>
         <ButtonGroup aria-label="Basic example">
@@ -37,8 +36,8 @@ class App extends React.Component {
         <ProgressBar
           striped
           variant="success"
-          now={getPercentageDone(routines)}
-          label={`${getPercentageDone(routines)}%`}
+          now={getPercentageDone()}
+          label={`${getPercentageDone()}%`}
         />
         {this.state.todo && <Todos></Todos>}
         {!this.state.todo && <Done></Done>}

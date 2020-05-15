@@ -1,10 +1,9 @@
-import React, { useState } from "react";
+import React from "react";
 import RoutineCard from "./RoutineCard";
 import {
   getTodaysRoutines,
   markRoutineAsDone,
-  addRoutine,
-  getRoutines,
+  getRoutineByName,
 } from "../backend/routes";
 import { getMonth, getDayOfMonth } from "../backend/helpers";
 import Modal from "react-bootstrap/Modal";
@@ -16,19 +15,28 @@ export default class Todos extends React.Component {
     routines: [],
     showModal: false,
   };
-  Example = () => {
-    const handleClose = (e) => {
+  Modal = () => {
+    const handleSubmit = (e) => {
       const form = e.target.parentElement;
       const time = form.time.value;
       const comment = form.comment.value;
+      const month = getMonth();
+      const dayOfMonth = getDayOfMonth();
       markRoutineAsDone(this.state.routineDoneName, comment, time);
-      this.componentDidMount();
+      this.setState({
+        routines: getTodaysRoutines().filter(
+          (routine) => !routine.done[month][dayOfMonth]
+        ),
+        showModal: false,
+      });
     };
     return (
       <>
         <Modal
           show={this.state.showModal}
-          onHide={handleClose}
+          onHide={() => {
+            this.setState({ showModal: false, routineDoneName: "" });
+          }}
           animation={false}
         >
           <Modal.Header closeButton>
@@ -42,6 +50,9 @@ export default class Todos extends React.Component {
                   type="number"
                   placeholder="Time in Minutes"
                   name="time"
+                  defaultValue={
+                    getRoutineByName(this.state.routineDoneName).estimation
+                  }
                 />
               </Form.Group>
 
@@ -53,7 +64,7 @@ export default class Todos extends React.Component {
                   name="comment"
                 />
               </Form.Group>
-              <Button variant="primary" onClick={handleClose}>
+              <Button variant="primary" onClick={handleSubmit}>
                 Mark as Done
               </Button>
             </Form>
@@ -99,7 +110,7 @@ export default class Todos extends React.Component {
             />
           ))}
         </div>
-        {this.state.showModal && this.Example()}
+        {this.state.showModal && this.Modal()}
       </React.Fragment>
     );
   }
