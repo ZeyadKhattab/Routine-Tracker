@@ -20,7 +20,7 @@ const toggleRoutineByName = (name) => {
   save("routines", JSON.stringify(routines));
 };
 const addRoutine = (name, type, weekSchedule, time, url) => {
-  const newRoutine = new Routine(name, type, weekSchedule, name, url);
+  const newRoutine = new Routine(name, type, weekSchedule, time, url);
   routines.push(newRoutine);
   save("routines", JSON.stringify(routines));
 };
@@ -71,6 +71,16 @@ const getTodaysRoutines = () => {
     (routine) => routine.active[month][dayOfMonth] && routine.days[dayOfWeek]
   );
 };
+const getPercentageDone = () => {
+  const month = getMonth();
+  const dayOfMonth = getDayOfMonth();
+  return (
+    (getTodaysRoutines().filter((routine) => routine.done[month][dayOfMonth])
+      .length /
+      routines.length) *
+    100
+  );
+};
 export {
   getRoutines,
   getRoutineByName,
@@ -82,4 +92,5 @@ export {
   activateRoutineByName,
   getAcitveRoutines,
   getTodaysRoutines,
+  getPercentageDone,
 };

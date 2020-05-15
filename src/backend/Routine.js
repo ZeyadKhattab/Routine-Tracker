@@ -18,6 +18,7 @@ export default class Routine {
     this.info = getArray(12, 31, "");
     this.active = getArray(12, 31, true);
     this.timeNeeded = getArray(12, 31, 0);
+    this.touchTime = getArray(12, 31, [0, 0]);
     const month = getMonth();
     const day = getDayOfMonth();
     for (let m = month; m < 12; m++)
@@ -34,7 +35,10 @@ export default class Routine {
     this.done[month][day] = true;
     this.info[month][day] = addedInfo;
     this.timeNeeded[month][day] = minutes;
+    const today = new Date();
+    this.touchTime[month][day] = [today.getHours() + 1][today.getMinutes() + 1];
   };
+  // returns 1 if did today, -1 if should have been done but didn't and 0 otherwise
   todayStatus = () => {
     const month = getMonth();
     const dayOfMonth = getDayOfMonth();

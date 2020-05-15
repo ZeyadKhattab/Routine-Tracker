@@ -24,7 +24,7 @@ export default class RoutineCard extends React.Component {
           {this.state.doneButton && (
             <Button
               variant="danger"
-              onClick={this.props.toggleRoutine.bind(this, routine)}
+              onClick={this.props.markRoutineAsDone.bind(this, routine.name)}
             >
               Mark as Done
             </Button>

@@ -1,6 +1,5 @@
 import React from "react";
 import { addRoutine } from "../backend/routes";
-import App from "../App";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 
@@ -25,9 +24,7 @@ class AddRoutine extends React.Component {
     addRoutine(routineName, routineTpye, weekSchedule, routineTime, routineUrl);
   };
 
-  state = { done: false };
   render() {
-    if (this.state.done) return <App />;
     return (
       <Form style={{ margin: "10px" }}>
         <Form.Group controlId="formBasicEmail">
