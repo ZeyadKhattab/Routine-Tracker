@@ -1,6 +1,7 @@
 import React from "react";
 // import RoutineCard from "./RoutineCard";
 import PieChart from "./PieChart";
+import MinutesSpent from "./MinutesSpent";
 import Log from "./Log";
 import { getTodaysRoutines } from "../backend/routes";
 import { getMonth, getDayOfMonth } from "../backend/helpers";
@@ -27,7 +28,9 @@ export default class Done extends React.Component {
         </div>
         <div
           style={{ backgroundColor: "green", flexGrow: "1", height: "100vh" }}
-        ></div>
+        >
+          <MinutesSpent></MinutesSpent>
+        </div>
       </div>
     );
   }

@@ -81,6 +81,13 @@ const getPercentageDone = () => {
     100
   );
 };
+const getTimeSpent = (month = getMonth(), dayOfMonth = getDayOfMonth()) => {
+  let ans = 0;
+  for (const routine of routines) {
+    ans += parseInt(routine.timeNeeded[month][dayOfMonth]);
+  }
+  return ans;
+};
 export {
   getRoutines,
   getRoutineByName,
@@ -93,4 +100,5 @@ export {
   getAcitveRoutines,
   getTodaysRoutines,
   getPercentageDone,
+  getTimeSpent,
 };
