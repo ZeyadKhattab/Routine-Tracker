@@ -88,6 +88,14 @@ const getTimeSpent = (month = getMonth(), dayOfMonth = getDayOfMonth()) => {
   }
   return ans;
 };
+const getRoutineByDay = (month = getMonth(), dayOfMonth = getDayOfMonth()) => {
+  const date = new Date(2020, month, dayOfMonth);
+  let dayOfWeek = date.getDay() - 1;
+  if (dayOfWeek < 0) dayOfWeek += 7;
+  return routines.filter(
+    (routine) => routine.active[month][dayOfMonth] && routine.days[dayOfWeek]
+  );
+};
 export {
   getRoutines,
   getRoutineByName,
@@ -101,4 +109,5 @@ export {
   getTodaysRoutines,
   getPercentageDone,
   getTimeSpent,
+  getRoutineByDay,
 };

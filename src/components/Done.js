@@ -5,6 +5,7 @@ import MinutesSpent from "./MinutesSpent";
 import Log from "./Log";
 import { getTodaysRoutines } from "../backend/routes";
 import { getMonth, getDayOfMonth } from "../backend/helpers";
+import CompareDays from "./CompareDays";
 
 export default class Done extends React.Component {
   state = { routines: [] };
@@ -26,10 +27,9 @@ export default class Done extends React.Component {
           <PieChart></PieChart>
           <Log></Log>
         </div>
-        <div
-          style={{ backgroundColor: "green", flexGrow: "1", height: "100vh" }}
-        >
+        <div style={{ flexGrow: "1", height: "100vh" }}>
           <MinutesSpent></MinutesSpent>
+          <CompareDays></CompareDays>
         </div>
       </div>
     );
