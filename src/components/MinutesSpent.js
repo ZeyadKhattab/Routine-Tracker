@@ -19,7 +19,6 @@ export default class MinutesSpent extends React.Component {
       let date = new Date(new Date().getTime() - 24 * 60 * 60 * 1000 * day);
       const month = date.getMonth();
       const dayOfMonth = date.getDate();
-      console.log(getTimeSpent(month, dayOfMonth));
       data.push([
         `${month + 1}/${dayOfMonth}`,
         getTimeSpent(month, dayOfMonth),
