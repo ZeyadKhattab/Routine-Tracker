@@ -1,6 +1,7 @@
 import React from "react";
 // import RoutineCard from "./RoutineCard";
 import PieChart from "./PieChart";
+import Log from "./Log";
 import { getTodaysRoutines } from "../backend/routes";
 import { getMonth, getDayOfMonth } from "../backend/helpers";
 
@@ -20,8 +21,9 @@ export default class Done extends React.Component {
 
     return (
       <div style={flexContainerStyle}>
-        <div style={{ backgroundColor: "red", flexGrow: "1", height: "100vh" }}>
+        <div style={{ flexGrow: "1", height: "100vh" }}>
           <PieChart></PieChart>
+          <Log></Log>
         </div>
         <div
           style={{ backgroundColor: "green", flexGrow: "1", height: "100vh" }}
@@ -34,5 +36,4 @@ const flexContainerStyle = {
   display: "flex",
   flexWrap: "wrap",
   width: "100%",
-  backgroundColor: "black",
 };

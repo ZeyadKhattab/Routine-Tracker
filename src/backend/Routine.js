@@ -36,7 +36,7 @@ export default class Routine {
     this.info[month][day] = addedInfo;
     this.timeNeeded[month][day] = minutes;
     const today = new Date();
-    this.touchTime[month][day] = [today.getHours() + 1][today.getMinutes() + 1];
+    this.touchTime[month][day] = [today.getHours(), today.getMinutes()];
   };
   // returns 1 if did today, -1 if should have been done but didn't and 0 otherwise
   todayStatus = () => {
