@@ -16,11 +16,13 @@ export default class MinutesSpent extends React.Component {
   render() {
     const data = [["Day", "Minutes Spent"]];
     for (let day = numDays - 1; day >= 0; day--) {
-      let date = new Date(new Date().getTime() - 24 * 60 * 60 * 1000 * day);
+      let date = new Date(
+        new Date().getTime() - 24 * 60 * 60 * 1000 * day - 4 * 60 * 60 * 1000
+      );
       const month = date.getMonth();
-      const dayOfMonth = date.getDate();
+      const dayOfMonth = date.getDate() - 1;
       data.push([
-        `${month + 1}/${dayOfMonth}`,
+        `${month + 1}/${dayOfMonth + 1}`,
         getTimeSpent(month, dayOfMonth),
       ]);
     }
