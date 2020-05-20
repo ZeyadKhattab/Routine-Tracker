@@ -148,7 +148,7 @@ const getNumRoutinesDone = (
   }
 };
 const getRoutineByDay = (month = getMonth(), dayOfMonth = getDayOfMonth()) => {
-  const date = new Date(2020, month, dayOfMonth);
+  const date = new Date(2020, month, dayOfMonth + 1);
   let dayOfWeek = date.getDay() - 1;
   if (dayOfWeek < 0) dayOfWeek += 7;
   return routines.filter(

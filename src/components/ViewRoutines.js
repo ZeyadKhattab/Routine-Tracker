@@ -2,8 +2,6 @@ import { getRoutines } from "../backend/routes";
 import React from "react";
 import RoutineCard from "./RoutineCard";
 export default class ViewRoutines extends React.Component {
-  toggleRoutine = (name, event) => {};
-
   state = { routines: [] };
   componentDidMount() {
     this.setState({ routines: getRoutines() });

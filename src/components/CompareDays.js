@@ -10,8 +10,11 @@ export default class CompareDays extends React.Component {
     super();
     const month = props.month ? props.month : getMonth();
     const dayOfMonth = props.dayOfMonth ? props.dayOfMonth : getDayOfMonth();
-    const monthComp = month;
-    const dayOfMonthComp = dayOfMonth - 1;
+    const date = new Date(
+      new Date(2020, month, dayOfMonth + 1).getTime() - 24 * 60 * 60 * 1000
+    );
+    const monthComp = date.getMonth();
+    const dayOfMonthComp = date.getDate() - 1;
     this.state = {
       month,
       dayOfMonth,
@@ -41,7 +44,6 @@ export default class CompareDays extends React.Component {
     });
   };
   update = (date) => {
-    console.log("in update funcion", date.getDate());
     this.setState({
       monthComp: date.getMonth(),
       dayOfMonthComp: date.getDate() - 1,

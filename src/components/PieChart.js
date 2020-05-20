@@ -7,7 +7,10 @@ export default class extends React.Component {
   getGraph = (routines, month, dayOfMonth) => {
     const data = [["Task", "Minutes"]];
     for (const routine of routines) {
-      data.push([routine.name, routine.timeNeeded[month][dayOfMonth]]);
+      data.push([
+        routine.name,
+        parseInt(routine.timeNeeded[month][dayOfMonth]),
+      ]);
     }
     return (
       <Chart
