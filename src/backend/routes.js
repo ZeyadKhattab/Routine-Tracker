@@ -114,6 +114,12 @@ const getTimeSpent = (
       curr = new Date(curr.getTime() - 24 * 60 * 60 * 1000);
     }
     return ans;
+  } else if (state === 2) {
+    let ans = 0;
+    for (let day = 0; day < 31; day++)
+      for (const routine of routines)
+        ans += parseInt(routine.timeNeeded[month][day]);
+    return ans;
   }
 };
 
@@ -133,6 +139,11 @@ const getNumRoutinesDone = (
     const week = getWeekOf(month, dayOfMonth);
     for (const routine of routines)
       for (const date of week) ans += routine.done[date[0]][date[1]] ? 1 : 0;
+    return ans;
+  } else if (state === 2) {
+    let ans = 0;
+    for (let day = 0; day < 31; day++)
+      for (const routine of routines) ans += routine.done[month][day] ? 1 : 0;
     return ans;
   }
 };

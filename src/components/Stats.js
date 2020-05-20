@@ -21,6 +21,12 @@ export default class Stats extends React.Component {
           >
             Weekly
           </Button>
+          <Button
+            variant="secondary"
+            onClick={() => this.setState({ state: 2 })}
+          >
+            Monthly
+          </Button>
         </ButtonGroup>
         <ButtonGroup aria-label="Basic example">
           <Button
