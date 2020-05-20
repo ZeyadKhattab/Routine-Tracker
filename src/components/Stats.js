@@ -2,7 +2,13 @@ import React from "react";
 import MinutesSpent from "./MinutesSpent";
 import Button from "react-bootstrap/Button";
 import ButtonGroup from "react-bootstrap/ButtonGroup";
-import { getNumRoutinesDone, getTimeSpent } from "../backend/routes";
+import Chart from "react-google-charts";
+
+import {
+  getNumRoutinesDone,
+  getTimeSpent,
+  getRoutines,
+} from "../backend/routes";
 export default class Stats extends React.Component {
   state = { state: 1, showMetric: getNumRoutinesDone };
   render() {
@@ -47,7 +53,29 @@ export default class Stats extends React.Component {
           state={this.state.state}
           showMetric={this.state.showMetric}
         ></MinutesSpent>
+        <RoutinesFrequency></RoutinesFrequency>
       </div>
     );
   }
+}
+function RoutinesFrequency() {
+  const routines = getRoutines();
+  routines.sort((x, y) => y.numTimesDone() - x.numTimesDone());
+  const data = [["Routine", "Number of times does"]];
+  for (const routine of routines)
+    data.push([routine.name, routine.numTimesDone()]);
+  return (
+    <Chart
+      width={"600px"}
+      height={"400px"}
+      chartType="BarChart"
+      loader={<div>Loading Chart</div>}
+      data={data}
+      options={{
+        hAxis: {
+          title: "Top Routines",
+        },
+      }}
+    />
+  );
 }

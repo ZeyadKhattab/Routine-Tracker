@@ -33,7 +33,7 @@ export default class Log extends React.Component {
     const toNum = hrEnd * 60 + minEnd;
     let ans = toNum - routine.timeNeeded[month][dayOfMonth];
     if (ans < 0) ans += 24 * 60;
-    if (ans < 4) ans += 24 * 60;
+    if (ans < 4 * 60) ans += 24 * 60;
     return ans;
   };
   getTime = (routine) => {

@@ -47,4 +47,10 @@ export default class Routine {
       return this.done[month][dayOfMonth] ? 1 : -1;
     else return 0;
   };
+  numTimesDone = () => {
+    let ans = 0;
+    for (let m = 0; m < 12; m++)
+      for (let d = 0; d < 31; d++) ans += this.done[m][d] ? 1 : 0;
+    return ans;
+  };
 }
