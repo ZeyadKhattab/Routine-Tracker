@@ -81,12 +81,39 @@ const getPercentageDone = () => {
     100
   );
 };
-const getTimeSpent = (month = getMonth(), dayOfMonth = getDayOfMonth()) => {
-  let ans = 0;
-  for (const routine of routines) {
-    ans += parseInt(routine.timeNeeded[month][dayOfMonth]);
+const getTimeSpent = (
+  month = getMonth(),
+  dayOfMonth = getDayOfMonth(),
+  state
+) => {
+  if (state === 0) {
+    let ans = 0;
+    for (const routine of routines) {
+      ans += parseInt(routine.timeNeeded[month][dayOfMonth]);
+    }
+    return ans;
+  } else if (state === 1) {
+    let curr = new Date(2020, month, dayOfMonth + 1);
+    let ans = 0;
+    while (true) {
+      curr = new Date(curr.getTime() + 24 * 60 * 60 * 1000);
+      if (getDayOfWeek(curr) === 0) break;
+      for (const routine of routines)
+        ans += parseInt(
+          routine.timeNeeded[getMonth(curr)][getDayOfMonth(curr)]
+        );
+    }
+    curr = new Date(2020, month, dayOfMonth + 1);
+    while (true) {
+      for (const routine of routines)
+        ans += parseInt(
+          routine.timeNeeded[getMonth(curr)][getDayOfMonth(curr)]
+        );
+      if (getDayOfWeek(curr) === 0) break;
+      curr = new Date(curr.getTime() - 24 * 60 * 60 * 1000);
+    }
+    return ans;
   }
-  return ans;
 };
 const getRoutineByDay = (month = getMonth(), dayOfMonth = getDayOfMonth()) => {
   const date = new Date(2020, month, dayOfMonth);

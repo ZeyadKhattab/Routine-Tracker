@@ -15,6 +15,7 @@ import AddRoutine from "./components/AddRoutine";
 import Help from "./components/Help";
 import ViewRoutines from "./components/ViewRoutines";
 import RoutineZoomed from "./components/RoutineZoomed";
+import Stats from "./components/Stats";
 import { getRoutineByName } from "./backend/routes";
 ReactDOM.render(
   <Router>
@@ -24,6 +25,7 @@ ReactDOM.render(
         <Nav className="mr-auto">
           <Nav.Link href="/add">Add</Nav.Link>
           <Nav.Link href="/help">Help</Nav.Link>
+          <Nav.Link href="/stats">Stats</Nav.Link>
           <Nav.Link href="/routines">All Routines</Nav.Link>
         </Nav>
       </Navbar>
@@ -31,6 +33,9 @@ ReactDOM.render(
       <Switch>
         <Route exact path="/add">
           <AddRoutine />
+        </Route>
+        <Route exact path="/stats">
+          <Stats />
         </Route>
         <Route exact path="/help">
           <Help />

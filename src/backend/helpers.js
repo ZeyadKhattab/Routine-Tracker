@@ -1,13 +1,14 @@
 const FOUR_HOURS = 4 * 60 * 60 * 1000;
 
-const getDayOfWeek = () => {
-  let today = new Date(new Date().getTime() - FOUR_HOURS).getDay() - 1;
+const getDayOfWeek = (date = new Date(new Date().getTime() - FOUR_HOURS)) => {
+  let today = date.getDay() - 1;
   if (today < 0) today += 7;
   return today;
 };
-const getDayOfMonth = () =>
-  new Date(new Date().getTime() - FOUR_HOURS).getDate() - 1;
-const getMonth = () => new Date(new Date().getTime() - FOUR_HOURS).getMonth();
+const getDayOfMonth = (date = new Date(new Date().getTime() - FOUR_HOURS)) =>
+  date.getDate() - 1;
+const getMonth = (date = new Date(new Date().getTime() - FOUR_HOURS)) =>
+  date.getMonth();
 
 const getArray = (n, m, defaultVal) => {
   let ans = [];
