@@ -55,7 +55,7 @@ export default class MinutesSpent extends React.Component {
       <Chart
         width={"600px"}
         height={"400px"}
-        chartType="LineChart"
+        chartType="BarChart"
         loader={<div>Loading Chart</div>}
         data={data}
         options={{

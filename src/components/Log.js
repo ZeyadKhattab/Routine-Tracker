@@ -14,13 +14,28 @@ export default class Log extends React.Component {
     };
   }
   componentDidMount() {
-    if (!this.state.routines)
+    if (!this.state.routines) {
+      let routines = getRoutines().filter(
+        (routine) => routine.done[this.state.month][this.state.dayOfMonth]
+      );
+      routines.sort((x, y) => this.getStartTime(x) - this.getStartTime(y));
       this.setState({
-        routines: getRoutines().filter(
-          (routine) => routine.done[this.state.month][this.state.dayOfMonth]
-        ),
+        routines,
       });
+    }
   }
+  getStartTime = (routine) => {
+    const month = this.state.month;
+    const dayOfMonth = this.state.dayOfMonth;
+    const finishTime = routine.touchTime[month][dayOfMonth];
+    const hrEnd = finishTime[0],
+      minEnd = finishTime[1];
+    const toNum = hrEnd * 60 + minEnd;
+    let ans = toNum - routine.timeNeeded[month][dayOfMonth];
+    if (ans < 0) ans += 24 * 60;
+    if (ans < 4) ans += 24 * 60;
+    return ans;
+  };
   getTime = (routine) => {
     const month = this.state.month;
     const dayOfMonth = this.state.dayOfMonth;

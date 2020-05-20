@@ -90,6 +90,10 @@ function Test(props) {
     <DatePicker
       selected={startDate}
       onChange={(date) => {
+        if (date >= new Date()) {
+          alert("You are trying to compare with a date in the future");
+          return;
+        }
         setStartDate(date);
         props.update(date);
       }}
