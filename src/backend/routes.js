@@ -5,6 +5,7 @@ import {
   getDayOfMonth,
   getMonth,
   getDayOfWeek,
+  getWeekOf,
 } from "./helpers";
 const getRoutines = () =>
   JSON.parse(readFromLocalStorage("routines")).map((routine) =>
@@ -115,6 +116,26 @@ const getTimeSpent = (
     return ans;
   }
 };
+
+const getNumRoutinesDone = (
+  month = getMonth(),
+  dayOfMonth = getDayOfMonth(),
+  state
+) => {
+  if (state === 0) {
+    let ans = 0;
+    for (const routine of routines) {
+      ans += routine.done[month][dayOfMonth] ? 1 : 0;
+    }
+    return ans;
+  } else if (state === 1) {
+    let ans = 0;
+    const week = getWeekOf(month, dayOfMonth);
+    for (const routine of routines)
+      for (const date of week) ans += routine.done[date[0]][date[1]] ? 1 : 0;
+    return ans;
+  }
+};
 const getRoutineByDay = (month = getMonth(), dayOfMonth = getDayOfMonth()) => {
   const date = new Date(2020, month, dayOfMonth);
   let dayOfWeek = date.getDay() - 1;
@@ -137,4 +158,5 @@ export {
   getPercentageDone,
   getTimeSpent,
   getRoutineByDay,
+  getNumRoutinesDone,
 };

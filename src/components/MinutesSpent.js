@@ -10,20 +10,25 @@ export default class MinutesSpent extends React.Component {
     this.state = {
       month,
       dayOfMonth,
-      state: props.state | 0,
     };
   }
 
   render() {
-    const data = [["Day", "Minutes Spent"]];
+    const state = this.props.state | 0;
+    const showMetric = this.props.showMetric
+      ? this.props.showMetric
+      : getTimeSpent;
+    const title =
+      showMetric === getTimeSpent ? "Minutes Spent" : "Routines Done";
+    const data = [["Day", title]];
     for (let day = numDays - 1; day >= 0; day--) {
       let date;
-      if (this.state.state === 0)
+      if (state === 0)
         //days
         date = new Date(
           new Date().getTime() - 24 * 60 * 60 * 1000 * day - 4 * 60 * 60 * 1000
         );
-      else if (this.state.state === 1)
+      else if (state === 1)
         //weeks
         date = new Date(
           new Date().getTime() -
@@ -34,7 +39,7 @@ export default class MinutesSpent extends React.Component {
       const dayOfMonth = date.getDate() - 1;
       data.push([
         `${month + 1}/${dayOfMonth + 1}`,
-        getTimeSpent(month, dayOfMonth, this.state.state),
+        showMetric(month, dayOfMonth, state),
       ]);
     }
     return (
@@ -46,7 +51,7 @@ export default class MinutesSpent extends React.Component {
         data={data}
         options={{
           hAxis: {
-            title: "Minutes Spent",
+            title,
           },
         }}
       />

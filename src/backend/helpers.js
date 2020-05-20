@@ -22,7 +22,24 @@ const getArray = (n, m, defaultVal) => {
 const readFromLocalStorage = (key) => localStorage.getItem(key);
 const save = (key, value) => localStorage.setItem(key, value);
 const getDaysInMonths = (month, year) => new Date(year, month + 1, 0).getDate();
-
+const getWeekOf = (month, dayOfMonth) => {
+  let curr = new Date(2020, month, dayOfMonth + 1);
+  let ans = [];
+  while (true) {
+    curr = new Date(curr.getTime() + 24 * 60 * 60 * 1000);
+    if (getDayOfWeek(curr) === 0) break;
+    ans.push([getMonth(curr), getDayOfMonth(curr)]);
+  }
+  ans.reverse();
+  curr = new Date(2020, month, dayOfMonth + 1);
+  while (true) {
+    ans.push([getMonth(curr), getDayOfMonth(curr)]);
+    if (getDayOfWeek(curr) === 0) break;
+    curr = new Date(curr.getTime() - 24 * 60 * 60 * 1000);
+  }
+  ans.reverse();
+  return ans;
+};
 export {
   getDayOfWeek,
   getDayOfMonth,
@@ -31,4 +48,5 @@ export {
   readFromLocalStorage,
   save,
   getDaysInMonths,
+  getWeekOf,
 };
