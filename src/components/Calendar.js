@@ -12,7 +12,7 @@ class Calendar extends React.Component {
       ],
     ];
     for (let m = 0; m < 12; m++) {
-      for (let d = 0; d < getDaysInMonths(m, 2020); d++)
+      for (let d = 0; d < getDaysInMonths(m); d++)
         if (
           routine.active[m][d] &&
           routine.days[getDayOfWeekGivenMYD(m, 2020, d)]
@@ -40,12 +40,12 @@ class Calendar extends React.Component {
   }
 }
 const getDayOfWeekGivenMYD = (m, y, d) => {
-  let ans = new Date(m, y, d + 1).getDay() - 1;
-  if (ans < 0) ans += 7;
+  let ans = new Date(y, m, d + 1).getDay(); //date at m,d is at 12 am so it gets the required ans-1, that's why i changed it
+  if (ans === 7) ans = 0;
   return ans;
 };
 export default Calendar;
-var options = {
+const options = {
   title: "Red Sox Attendance",
   height: 350,
   calendar: {

@@ -114,7 +114,7 @@ const getPercentageDone = (
 const getTimeSpent = (
   month = getMonth(),
   dayOfMonth = getDayOfMonth(),
-  state
+  state = 0
 ) => {
   if (state === 0) {
     let ans = 0;
@@ -155,7 +155,7 @@ const getTimeSpent = (
 const getNumRoutinesDone = (
   month = getMonth(),
   dayOfMonth = getDayOfMonth(),
-  state
+  state = 0
 ) => {
   if (state === 0) {
     let ans = 0;

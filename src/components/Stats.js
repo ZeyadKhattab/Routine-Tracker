@@ -10,6 +10,7 @@ import {
   getRoutines,
   getPercentageDone,
 } from "../backend/routes";
+import { getDaysInMonths } from "../backend/helpers";
 export default class Stats extends React.Component {
   state = { state: 1, showMetric: getNumRoutinesDone };
   render() {
@@ -61,6 +62,7 @@ export default class Stats extends React.Component {
           showMetric={this.state.showMetric}
         ></MinutesSpent>
         <RoutinesFrequency></RoutinesFrequency>
+        <HeatMap showMetric={this.state.showMetric}></HeatMap>
       </div>
     );
   }
@@ -83,6 +85,39 @@ function RoutinesFrequency() {
           title: "Top Routines",
         },
       }}
+    />
+  );
+}
+function HeatMap(props) {
+  const options = {
+    title: "Heat Map",
+    height: 350,
+    calendar: {
+      cellColor: {
+        stroke: "#6B8E23",
+        strokeOpacity: 0.6,
+        strokeWidth: 1,
+      },
+    },
+    colors: ["#FF0000", "#00FF00"],
+  };
+  const data = [
+    [
+      { type: "date", id: "Date" },
+      { type: "number", id: "Number of times done" },
+    ],
+  ];
+  for (let m = 0; m < 12; m++) {
+    for (let d = 0; d < getDaysInMonths(m, 2020); d++)
+      data.push([new Date(2020, m, d + 1), props.showMetric(m, d)]);
+  }
+
+  return (
+    <Chart
+      chartType="Calendar"
+      loader={<div>Loading Chart</div>}
+      data={data}
+      options={options}
     />
   );
 }

@@ -21,7 +21,8 @@ const getArray = (n, m, defaultVal) => {
 };
 const readFromLocalStorage = (key) => localStorage.getItem(key);
 const save = (key, value) => localStorage.setItem(key, value);
-const getDaysInMonths = (month, year) => new Date(year, month + 1, 0).getDate();
+const getDaysInMonths = (month, year = 2020) =>
+  new Date(year, month + 1, 0).getDate();
 const getWeekOf = (month, dayOfMonth) => {
   let curr = new Date(2020, month, dayOfMonth + 1);
   let ans = [];
