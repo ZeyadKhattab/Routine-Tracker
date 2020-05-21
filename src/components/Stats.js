@@ -8,6 +8,7 @@ import {
   getNumRoutinesDone,
   getTimeSpent,
   getRoutines,
+  getPercentageDone,
 } from "../backend/routes";
 export default class Stats extends React.Component {
   state = { state: 1, showMetric: getNumRoutinesDone };
@@ -46,6 +47,12 @@ export default class Stats extends React.Component {
             onClick={() => this.setState({ showMetric: getTimeSpent })}
           >
             MinutesSpent
+          </Button>
+          <Button
+            variant="secondary"
+            onClick={() => this.setState({ showMetric: getPercentageDone })}
+          >
+            Percentage
           </Button>
         </ButtonGroup>
 

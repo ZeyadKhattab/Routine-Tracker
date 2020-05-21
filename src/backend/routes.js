@@ -72,15 +72,44 @@ const getTodaysRoutines = () => {
     (routine) => routine.active[month][dayOfMonth] && routine.days[dayOfWeek]
   );
 };
-const getPercentageDone = () => {
-  const month = getMonth();
-  const dayOfMonth = getDayOfMonth();
-  return (
-    (getTodaysRoutines().filter((routine) => routine.done[month][dayOfMonth])
-      .length /
-      routines.length) *
-    100
-  );
+const getPercentageDone = (
+  month = getMonth(),
+  dayOfMonth = getDayOfMonth(),
+  state = 0
+) => {
+  if (state === 0)
+    return (
+      (getTodaysRoutines().filter((routine) => routine.done[month][dayOfMonth])
+        .length /
+        routines.length) *
+      100
+    );
+  else if (state === 1) {
+    const week = getWeekOf(month, dayOfMonth);
+    let done = 0,
+      all = 0;
+    for (const routine of routines)
+      for (let day = 0; day < 7; day++) {
+        let date = week[day];
+        if (!routine.active[date[0]][date[1]] || !routine.days[day]) continue;
+        all++;
+        done += routine.done[date[0]][date[1]] ? 1 : 0;
+      }
+    return (done / all) * 100;
+  } else if (state === 2) {
+    let done = 0,
+      all = 0;
+    for (const routine of routines)
+      for (let day = 0; day < 31; day++) {
+        const date = new Date(2020, month, day + 1);
+        let dayOfWeek = getDayOfWeek(date) + 1;
+        if (dayOfWeek === 7) dayOfWeek = 0;
+        if (!routine.active[month][day] || !routine.days[dayOfWeek]) continue;
+        all++;
+        done += routine.done[month][day] ? 1 : 0;
+      }
+    return (done / all) * 100;
+  }
 };
 const getTimeSpent = (
   month = getMonth(),

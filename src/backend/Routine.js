@@ -1,4 +1,10 @@
-import { getDayOfMonth, getMonth, getArray, getDayOfWeek } from "./helpers";
+import {
+  getDayOfMonth,
+  getMonth,
+  getArray,
+  getDayOfWeek,
+  getDaysInMonths,
+} from "./helpers";
 export default class Routine {
   constructor(
     name,
@@ -22,7 +28,8 @@ export default class Routine {
     const month = getMonth();
     const day = getDayOfMonth();
     for (let m = month; m < 12; m++)
-      for (let d = m === month ? day : 0; d < 31; d++) this.active[m][d] = true;
+      for (let d = m === month ? day : 0; d < getDaysInMonths(m); d++)
+        this.active[m][d] = true;
   }
   toggle = () => {
     let month = getMonth(),
