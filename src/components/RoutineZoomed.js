@@ -2,6 +2,7 @@ import React from "react";
 import Alert from "./Alert";
 import Graph from "./Graph";
 import Button from "react-bootstrap/Button";
+import Table from "react-bootstrap/Table";
 import {
   deactivateRoutineByName,
   activateRoutineByName,
@@ -114,11 +115,50 @@ export default class RoutineZoomed extends React.Component {
         {this.activateDeactivateButton()}
         {this.getStatus()}
         <WeeklyBarChart routine={routine}></WeeklyBarChart>
+        <LastDays routine={routine}></LastDays>
       </div>
     );
   }
 }
 
+function LastDays(props) {
+  const routine = props.routine;
+  const numDays = 7;
+  let dates = [];
+  let curr = new Date();
+  for (let i = getDayOfWeek(); dates.length < numDays; i = (i + 6) % 7) {
+    if (routine.days[i]) {
+      dates.push(curr);
+    }
+    curr = new Date(curr.getTime() - 24 * 60 * 60 * 1000);
+  }
+  dates.reverse();
+  return (
+    <Table striped bordered hover>
+      <thead>
+        <tr>
+          <th>Date</th>
+          <th>Time Period</th>
+          <th>Comment</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        {dates.map((date) => (
+          <tr>
+            <td>{date.toDateString()}</td>
+            <td>
+              {routine.done[getMonth(date)][getDayOfMonth(date)]
+                ? routine.getDuration(getMonth(date), getDayOfMonth(date))
+                : "NO"}
+            </td>
+            <td>{routine.info[getMonth(date)][getDayOfMonth(date)]}</td>
+          </tr>
+        ))}
+      </tbody>
+    </Table>
+  );
+}
 const style = {
   backgroundColor: "#D3D3D3",
 };

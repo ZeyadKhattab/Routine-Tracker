@@ -70,4 +70,10 @@ export default class Routine {
     if (comp && ans < 4 * 60) ans += 24 * 60;
     return ans;
   };
+  getDuration = (month, dayOfMonth) => {
+    let start = this.getStartTime(month, dayOfMonth);
+    return `${Math.floor(start / 60)}:${start % 60} - ${
+      this.touchTime[month][dayOfMonth][0]
+    }:${this.touchTime[month][dayOfMonth][1]}`;
+  };
 }
