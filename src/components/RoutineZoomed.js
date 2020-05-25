@@ -3,6 +3,8 @@ import Alert from "./Alert";
 import Graph from "./Graph";
 import Button from "react-bootstrap/Button";
 import Table from "react-bootstrap/Table";
+import Chart from "react-google-charts";
+
 import {
   deactivateRoutineByName,
   activateRoutineByName,
@@ -13,7 +15,6 @@ import Calendar from "./Calendar";
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
-import WeeklyBarChart from "./WeeklyBarChart";
 import RoutineCard from "./RoutineCard";
 import { getMonth, getDayOfMonth, getDayOfWeek } from "../backend/helpers";
 export default class RoutineZoomed extends React.Component {
@@ -109,8 +110,9 @@ export default class RoutineZoomed extends React.Component {
         </Container>
         {this.activateDeactivateButton()}
         {this.getStatus()}
-        <WeeklyBarChart routine={routine}></WeeklyBarChart>
+        {/* <WeeklyBarChart routine={routine}></WeeklyBarChart> */}
         <LastDays routine={routine}></LastDays>
+        <CommentDistribution routine={routine}></CommentDistribution>
       </div>
     );
   }
@@ -164,3 +166,34 @@ const containerStyle = {
   margin: "20px",
   borderRadius: "10px",
 };
+
+function CommentDistribution(props) {
+  const routine = props.routine;
+  let map = new Map();
+  for (let m = 0; m < 12; m++)
+    for (let d = 0; d < 31; d++)
+      if (routine.info[m][d] !== "") {
+        const key = routine.info[m][d];
+        let cnt = map.has(key) ? map.get(key) : 0;
+        cnt++;
+        map.set(key, cnt);
+      }
+  const data = [["Comment", "# of Times"]];
+  for (let [comment, cnt] of map) {
+    data.push([comment, cnt]);
+  }
+  if (data.length === 1) return <React.Fragment></React.Fragment>;
+  return (
+    <Chart
+      width={"600px"}
+      height={"400px"}
+      chartType="PieChart"
+      loader={<div>Loading Chart</div>}
+      data={data}
+      options={{
+        title: "Your Comments",
+        backgroundColor: "#546E7A",
+      }}
+    />
+  );
+}
