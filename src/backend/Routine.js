@@ -76,4 +76,21 @@ export default class Routine {
       this.touchTime[month][dayOfMonth][0]
     }:${this.touchTime[month][dayOfMonth][1]}`;
   };
+  getTimesShouldDone = () => {
+    let ans = 0;
+    // revise the fact that the day stars at 4 am
+    for (let m = 0; m < 12; m++)
+      for (let d = 0; d < 31; d++) {
+        let date = new Date(2020, m, d);
+        if (date > new Date()) break;
+        if (this.active[m][d] && this.days[getDayOfWeek(date)]) ans++;
+      }
+    return ans;
+  };
+  getTotalTimeSpent = () => {
+    let ans = 0;
+    for (let m = 0; m < 12; m++)
+      for (let d = 0; d < 31; d++) ans += parseInt(this.timeNeeded[m][d]);
+    return ans;
+  };
 }

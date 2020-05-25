@@ -8,9 +8,11 @@ export default class RoutineCard extends React.Component {
   componentDidMount() {
     if (this.props.doneButton) this.setState({ doneButton: true });
   }
+  routinePercentage = (routine) =>
+    Math.round((routine.numTimesDone() * 100) / routine.getTimesShouldDone());
   render() {
     const routine = this.props.routine;
-
+    const zoom = this.props.zoom;
     return (
       <Card bg="info" style={cardStyle} className="text-center">
         <Card.Img variant="top" src={routine.imageLink}></Card.Img>
@@ -21,6 +23,15 @@ export default class RoutineCard extends React.Component {
               {routine.name}
             </Link>
           </Card.Title>
+          {zoom && (
+            <Card.Text>
+              {`${routine.numTimesDone()}/${routine.getTimesShouldDone()}`}
+              <br></br>
+              {`${this.routinePercentage(routine)}%`}
+              <br></br>
+              {`${routine.getTotalTimeSpent()} Minutes Spent`}
+            </Card.Text>
+          )}
           {this.state.doneButton && (
             <Button
               variant="danger"
@@ -29,11 +40,13 @@ export default class RoutineCard extends React.Component {
               Mark as Done
             </Button>
           )}
-          <Button variant="success">
-            <Link style={{ color: "black" }} to={`/routines/${routine.name}`}>
-              See More
-            </Link>
-          </Button>
+          {!zoom && (
+            <Button variant="success">
+              <Link style={{ color: "black" }} to={`/routines/${routine.name}`}>
+                See More
+              </Link>
+            </Button>
+          )}
         </Card.Body>
       </Card>
     );

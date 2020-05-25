@@ -8,13 +8,13 @@ import {
   activateRoutineByName,
   deletRoutineByName,
 } from "../backend/routes";
-import Card from "react-bootstrap/Card";
 // import pic from "../assets/sports1.png";
 import Calendar from "./Calendar";
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import WeeklyBarChart from "./WeeklyBarChart";
+import RoutineCard from "./RoutineCard";
 import { getMonth, getDayOfMonth, getDayOfWeek } from "../backend/helpers";
 export default class RoutineZoomed extends React.Component {
   activateDeactivateButton = () => {
@@ -92,12 +92,7 @@ export default class RoutineZoomed extends React.Component {
         <Container>
           <Row>
             <Col style={containerStyle}>
-              <Card style={{ justifyContent: "center" }}>
-                <Card.Img variant="top" src={routine.imageLink} />
-                <Card.Body>
-                  <Card.Title>{routine.name}</Card.Title>
-                </Card.Body>
-              </Card>
+              <RoutineCard routine={routine} zoom={true}></RoutineCard>
             </Col>
             <Col style={containerStyle}>
               {<Graph routine={routine}></Graph>}
