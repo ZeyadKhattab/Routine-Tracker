@@ -18,24 +18,17 @@ export default class Log extends React.Component {
       let routines = getRoutines().filter(
         (routine) => routine.done[this.state.month][this.state.dayOfMonth]
       );
-      routines.sort((x, y) => this.getStartTime(x) - this.getStartTime(y));
+      routines.sort(
+        (x, y) =>
+          x.getStartTime(this.state.month, this.state.dayOfMonth, true) -
+          y.getStartTime(this.state.month, this.state.dayOfMonth, true)
+      );
       this.setState({
         routines,
       });
     }
   }
-  getStartTime = (routine) => {
-    const month = this.state.month;
-    const dayOfMonth = this.state.dayOfMonth;
-    const finishTime = routine.touchTime[month][dayOfMonth];
-    const hrEnd = finishTime[0],
-      minEnd = finishTime[1];
-    const toNum = hrEnd * 60 + minEnd;
-    let ans = toNum - routine.timeNeeded[month][dayOfMonth];
-    if (ans < 0) ans += 24 * 60;
-    if (ans < 4 * 60) ans += 24 * 60;
-    return ans;
-  };
+
   getTime = (routine) => {
     const month = this.state.month;
     const dayOfMonth = this.state.dayOfMonth;
@@ -43,9 +36,9 @@ export default class Log extends React.Component {
     const hrEnd = finishTime[0],
       minEnd = finishTime[1];
     const toNum = hrEnd * 60 + minEnd;
-    const start = toNum - routine.timeNeeded[month][dayOfMonth];
+    let start = toNum - routine.timeNeeded[month][dayOfMonth];
+    if (start < 0) start += 24 * 60;
     let hr = Math.floor(start / 60);
-    if (hr < 0) hr += 24;
     return `${hr}:${start % 60} - ${finishTime[0]}:${finishTime[1]}`;
   };
   render() {

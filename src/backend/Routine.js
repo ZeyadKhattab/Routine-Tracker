@@ -60,4 +60,14 @@ export default class Routine {
       for (let d = 0; d < 31; d++) ans += this.done[m][d] ? 1 : 0;
     return ans;
   };
+  getStartTime = (month, dayOfMonth, comp = false) => {
+    const finishTime = this.touchTime[month][dayOfMonth];
+    const hrEnd = finishTime[0],
+      minEnd = finishTime[1];
+    const toNum = hrEnd * 60 + minEnd;
+    let ans = toNum - this.timeNeeded[month][dayOfMonth];
+    if (ans < 0) ans += 24 * 60;
+    if (comp && ans < 4 * 60) ans += 24 * 60;
+    return ans;
+  };
 }
