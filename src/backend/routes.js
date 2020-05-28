@@ -7,10 +7,14 @@ import {
   getDayOfWeek,
   getWeekOf,
 } from "./helpers";
-const getRoutines = () =>
-  JSON.parse(readFromLocalStorage("routines")).map((routine) =>
+const getRoutines = () => {
+  if (localStorage.getItem("routines") === null) {
+    return [];
+  }
+  return JSON.parse(readFromLocalStorage("routines")).map((routine) =>
     Object.assign(new Routine(), routine)
   );
+};
 const routines = getRoutines();
 
 const getRoutineByName = (name) => {
