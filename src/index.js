@@ -18,7 +18,7 @@ import RoutineZoomed from "./components/RoutineZoomed";
 import Stats from "./components/Stats";
 import { getRoutineByName } from "./backend/routes";
 ReactDOM.render(
-  <Router>
+  <Router basename="/logger-react">
     <React.StrictMode>
       <Navbar bg="primary" variant="dark">
         <Navbar.Brand href="/">Home</Navbar.Brand>
@@ -26,7 +26,7 @@ ReactDOM.render(
           <Nav.Link href="/add">Add</Nav.Link>
           <Nav.Link href="/help">Help</Nav.Link>
           <Nav.Link href="/stats">Stats</Nav.Link>
-          <Nav.Link href="/routines">All Routines</Nav.Link>
+          <Nav.Link href="/logger-react/routines">All</Nav.Link>
         </Nav>
       </Navbar>
 
