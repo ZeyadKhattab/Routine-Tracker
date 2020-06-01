@@ -23,7 +23,7 @@ ReactDOM.render(
       <Navbar bg="primary" variant="dark">
         <Navbar.Brand href="/logger-react">Home</Navbar.Brand>
         <Nav className="mr-auto">
-          <Nav.Link href="/logger-react/add">Add</Nav.Link>
+          <Nav.Link href="/logger-react/add">UPDATES</Nav.Link>
           <Nav.Link href="/logger-react/help">Help</Nav.Link>
           <Nav.Link href="/logger-react/stats">Stats</Nav.Link>
           <Nav.Link href="/logger-react/routines">All Routines</Nav.Link>
