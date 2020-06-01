@@ -21,12 +21,12 @@ ReactDOM.render(
   <Router basename="/logger-react">
     <React.StrictMode>
       <Navbar bg="primary" variant="dark">
-        <Navbar.Brand href="/">Home</Navbar.Brand>
+        <Navbar.Brand href="/logger-react">Home</Navbar.Brand>
         <Nav className="mr-auto">
-          <Nav.Link href="/logger-react/add">Try it</Nav.Link>
-          <Nav.Link href="/help">Help</Nav.Link>
-          <Nav.Link href="/stats">Stats</Nav.Link>
-          <Nav.Link href="/routines">All Routines</Nav.Link>
+          <Nav.Link href="/logger-react/add">Add</Nav.Link>
+          <Nav.Link href="/logger-react/help">Help</Nav.Link>
+          <Nav.Link href="/logger-react/stats">Stats</Nav.Link>
+          <Nav.Link href="/logger-react/routines">All Routines</Nav.Link>
         </Nav>
       </Navbar>
 
