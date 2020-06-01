@@ -79,7 +79,7 @@ class AddRoutine extends React.Component {
           variant="primary"
           type="submit"
           onClick={this.handleSubmit.bind(this)}
-          href="/"
+          href="/logger-react"
         >
           Add Routine
         </Button>

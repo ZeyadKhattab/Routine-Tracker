@@ -29,7 +29,7 @@ export default class RoutineZoomed extends React.Component {
           onClick={(e) => {
             deactivateRoutineByName(routine.name);
           }}
-          href="/routines"
+          href="/logger-react/routines"
         >
           Deactivate
         </Button>
@@ -42,7 +42,7 @@ export default class RoutineZoomed extends React.Component {
             onClick={(e) => {
               activateRoutineByName(routine.name);
             }}
-            href="/routines"
+            href="/logger-react//routines"
           >
             Activate
           </Button>
@@ -51,7 +51,7 @@ export default class RoutineZoomed extends React.Component {
             onClick={(e) => {
               deletRoutineByName(routine.name);
             }}
-            href="/routines"
+            href="/logger-react//routines"
           >
             Delete
           </Button>
