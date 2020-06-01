@@ -22,7 +22,7 @@ export default class Routine {
     this.tag = tag;
     this.done = getArray(12, 31, false);
     this.info = getArray(12, 31, "");
-    this.active = getArray(12, 31, true);
+    this.active = getArray(12, 31, false);
     this.timeNeeded = getArray(12, 31, 0);
     this.touchTime = getArray(12, 31, [0, 0]);
     const month = getMonth();
