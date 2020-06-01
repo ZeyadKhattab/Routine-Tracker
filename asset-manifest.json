@@ -1,15 +1,15 @@
 {
   "files": {
     "main.css": "/logger-react/static/css/main.d1b05096.chunk.css",
-    "main.js": "/logger-react/static/js/main.08ba0a22.chunk.js",
-    "main.js.map": "/logger-react/static/js/main.08ba0a22.chunk.js.map",
+    "main.js": "/logger-react/static/js/main.88899315.chunk.js",
+    "main.js.map": "/logger-react/static/js/main.88899315.chunk.js.map",
     "runtime-main.js": "/logger-react/static/js/runtime-main.af8ab657.js",
     "runtime-main.js.map": "/logger-react/static/js/runtime-main.af8ab657.js.map",
     "static/css/2.60d9b82a.chunk.css": "/logger-react/static/css/2.60d9b82a.chunk.css",
     "static/js/2.d4f514b8.chunk.js": "/logger-react/static/js/2.d4f514b8.chunk.js",
     "static/js/2.d4f514b8.chunk.js.map": "/logger-react/static/js/2.d4f514b8.chunk.js.map",
     "index.html": "/logger-react/index.html",
-    "precache-manifest.53be51ceff89071765201c15887a30d8.js": "/logger-react/precache-manifest.53be51ceff89071765201c15887a30d8.js",
+    "precache-manifest.d62a34c390e71fecc0fca5a94f53e92b.js": "/logger-react/precache-manifest.d62a34c390e71fecc0fca5a94f53e92b.js",
     "service-worker.js": "/logger-react/service-worker.js",
     "static/css/2.60d9b82a.chunk.css.map": "/logger-react/static/css/2.60d9b82a.chunk.css.map",
     "static/css/main.d1b05096.chunk.css.map": "/logger-react/static/css/main.d1b05096.chunk.css.map",
@@ -20,6 +20,6 @@
     "static/css/2.60d9b82a.chunk.css",
     "static/js/2.d4f514b8.chunk.js",
     "static/css/main.d1b05096.chunk.css",
-    "static/js/main.08ba0a22.chunk.js"
+    "static/js/main.88899315.chunk.js"
   ]
 }
