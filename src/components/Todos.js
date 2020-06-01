@@ -29,6 +29,7 @@ export default class Todos extends React.Component {
         ),
         showModal: false,
       });
+      this.props.updateParent();
     };
     return (
       <>
@@ -40,7 +41,7 @@ export default class Todos extends React.Component {
           animation={false}
         >
           <Modal.Header closeButton>
-            <Modal.Title>Modal heading</Modal.Title>
+            <Modal.Title>Congrats</Modal.Title>
           </Modal.Header>
           <Modal.Body>
             <Form>
@@ -76,7 +77,7 @@ export default class Todos extends React.Component {
                 this.setState({ showModal: false, routineDoneName: "" })
               }
             >
-              Close
+              Cancel
             </Button>
           </Modal.Footer>
         </Modal>

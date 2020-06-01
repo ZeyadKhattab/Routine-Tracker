@@ -15,6 +15,9 @@ class App extends React.Component {
   state = {
     todo: true,
   };
+  update = () => {
+    this.setState(this.state);
+  };
 
   render() {
     return (
@@ -39,7 +42,7 @@ class App extends React.Component {
           now={getPercentageDone()}
           label={`${getPercentageDone()}%`}
         />
-        {this.state.todo && <Todos></Todos>}
+        {this.state.todo && <Todos updateParent={this.update}></Todos>}
         {!this.state.todo && <Done></Done>}
       </div>
     );
