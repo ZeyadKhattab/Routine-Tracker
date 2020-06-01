@@ -18,12 +18,12 @@ import RoutineZoomed from "./components/RoutineZoomed";
 import Stats from "./components/Stats";
 import { getRoutineByName } from "./backend/routes";
 ReactDOM.render(
-  <Router basename={process.env.PUBLIC_URL}>
+  <Router>
     <React.StrictMode>
       <Navbar bg="primary" variant="dark">
         <Navbar.Brand href="/">Home</Navbar.Brand>
         <Nav className="mr-auto">
-          <Nav.Link href="/add">basname</Nav.Link>
+          <Nav.Link href="/add">Script</Nav.Link>
           <Nav.Link href="/help">Help</Nav.Link>
           <Nav.Link href="/stats">Stats</Nav.Link>
           <Nav.Link href="/routines">All Routines</Nav.Link>
