@@ -17,7 +17,7 @@ export default class Todos extends React.Component {
   };
   Modal = () => {
     const handleSubmit = (e) => {
-      const form = e.target.parentElement;
+      const form = document.getElementById("modalForm");
       const time = form.time.value;
       const comment = form.comment.value;
       const month = getMonth();
@@ -44,7 +44,7 @@ export default class Todos extends React.Component {
             <Modal.Title>Congrats</Modal.Title>
           </Modal.Header>
           <Modal.Body>
-            <Form>
+            <Form id="modalForm">
               <Form.Group controlId="time">
                 <Form.Label>Time</Form.Label>
                 <Form.Control
@@ -65,12 +65,12 @@ export default class Todos extends React.Component {
                   name="comment"
                 />
               </Form.Group>
-              <Button variant="primary" onClick={handleSubmit}>
-                Mark as Done
-              </Button>
             </Form>
           </Modal.Body>
           <Modal.Footer>
+            <Button variant="primary" onClick={handleSubmit}>
+              Mark as Done
+            </Button>
             <Button
               variant="secondary"
               onClick={() =>
