@@ -79,16 +79,18 @@ export default class RoutineZoomed extends React.Component {
     if (status === 1)
       return <Alert variant="success" header="Congrats"></Alert>;
     else if (status === -1)
-      return <Alert variant="danger" header="You still have time!"></Alert>;
+      return (
+        <Alert
+          variant="danger"
+          header={`${routine.name} is scheduled for today`}
+        ></Alert>
+      );
   }
   render() {
     const routine = this.props.routine;
 
     return (
       <div style={style}>
-        <Button variant="primary" onClick={() => this.setState({ done: true })}>
-          Back
-        </Button>{" "}
         {this.showAlert()}
         <Container>
           <Row>
@@ -129,7 +131,7 @@ function LastDays(props) {
     }
     curr = new Date(curr.getTime() - 24 * 60 * 60 * 1000);
   }
-  dates.reverse();
+  // dates.reverse();
   return (
     <Table striped bordered hover>
       <thead>
