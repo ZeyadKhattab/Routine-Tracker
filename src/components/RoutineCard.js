@@ -8,8 +8,13 @@ export default class RoutineCard extends React.Component {
   componentDidMount() {
     if (this.props.doneButton) this.setState({ doneButton: true });
   }
-  routinePercentage = (routine) =>
-    Math.round((routine.numTimesDone() * 100) / routine.getTimesShouldDone());
+  routinePercentage = (routine) => {
+    let timesShouldDone = routine.getTimesShouldDone();
+    return timesShouldDone === 0
+      ? 0
+      : Math.round((routine.numTimesDone() * 100) / timesShouldDone);
+  };
+
   render() {
     const routine = this.props.routine;
     const zoom = this.props.zoom;

@@ -1,6 +1,7 @@
 const FOUR_HOURS = 4 * 60 * 60 * 1000;
 
-const getDayOfWeek = (date = new Date(new Date().getTime() - FOUR_HOURS)) => {
+const getDayOfWeek = (date = new Date()) => {
+  date = new Date(date.getTime() - FOUR_HOURS);
   let today = date.getDay() - 1;
   if (today < 0) today += 7;
   return today;

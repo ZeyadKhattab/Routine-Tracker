@@ -81,8 +81,9 @@ export default class Routine {
     // revise the fact that the day stars at 4 am
     for (let m = 0; m < 12; m++)
       for (let d = 0; d < 31; d++) {
-        let date = new Date(2020, m, d);
+        let date = new Date(2020, m, d + 1);
         if (date > new Date()) break;
+        date = new Date(2020, m, d + 2); // adjusting for 4 hrs
         if (this.active[m][d] && this.days[getDayOfWeek(date)]) ans++;
       }
     return ans;

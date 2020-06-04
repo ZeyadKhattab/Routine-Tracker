@@ -1,6 +1,6 @@
 import React from "react";
 import Chart from "react-google-charts";
-import { getDaysInMonths } from "../backend/helpers";
+import { getDaysInMonths, getDayOfWeek } from "../backend/helpers";
 class Calendar extends React.Component {
   getData = () => {
     const routine = this.props.routine;
@@ -8,7 +8,7 @@ class Calendar extends React.Component {
     const data = [
       [
         { type: "date", id: "Date" },
-        { type: "number", id: "Won/Loss" },
+        { type: "number", id: "Minutes Spent" },
       ],
     ];
     for (let m = 0; m < 12; m++) {
@@ -17,7 +17,10 @@ class Calendar extends React.Component {
           routine.active[m][d] &&
           routine.days[getDayOfWeekGivenMYD(m, 2020, d)]
         )
-          data.push([new Date(2020, m, d + 1), routine.done[m][d] ? 1 : 0]);
+          data.push([
+            new Date(2020, m, d + 1),
+            parseInt(routine.timeNeeded[m][d]),
+          ]);
     }
 
     return data;
@@ -40,9 +43,8 @@ class Calendar extends React.Component {
   }
 }
 const getDayOfWeekGivenMYD = (m, y, d) => {
-  let ans = new Date(y, m, d + 1).getDay(); //date at m,d is at 12 am so it gets the required ans-1, that's why i changed it
-  if (ans === 7) ans = 0;
-  return ans;
+  d++; // 0 indexed=> 1 indexed
+  return getDayOfWeek(new Date(y, m, d + 1)); //adjusting for 4 am
 };
 export default Calendar;
 const options = {
