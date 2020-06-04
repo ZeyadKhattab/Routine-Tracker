@@ -71,8 +71,10 @@ function RoutinesFrequency() {
   const routines = getRoutines();
   routines.sort((x, y) => y.numTimesDone() - x.numTimesDone());
   const data = [["Routine", "Number of times does"]];
-  for (const routine of routines)
-    data.push([routine.name, routine.numTimesDone()]);
+  for (const routine of routines) {
+    let y = routine.numTimesDone();
+    if (y > 0) data.push([routine.name, y]);
+  }
   return (
     <Chart
       width={"600px"}

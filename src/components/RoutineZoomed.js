@@ -12,6 +12,7 @@ import {
 } from "../backend/routes";
 // import pic from "../assets/sports1.png";
 import Calendar from "./Calendar";
+import WeeklyBarChart from "./WeeklyBarChart";
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
@@ -111,8 +112,7 @@ export default class RoutineZoomed extends React.Component {
           </Row>
         </Container>
         {this.activateDeactivateButton()}
-        {this.getStatus()}
-        {/* <WeeklyBarChart routine={routine}></WeeklyBarChart> */}
+        <WeeklyBarChart routine={routine}></WeeklyBarChart>
         <LastDays routine={routine}></LastDays>
         <CommentDistribution routine={routine}></CommentDistribution>
       </div>

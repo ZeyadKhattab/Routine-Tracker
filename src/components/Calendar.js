@@ -48,7 +48,7 @@ const getDayOfWeekGivenMYD = (m, y, d) => {
 };
 export default Calendar;
 const options = {
-  title: "Red Sox Attendance",
+  // title: "Red Sox Attendance",
   height: 350,
   calendar: {
     cellColor: {
