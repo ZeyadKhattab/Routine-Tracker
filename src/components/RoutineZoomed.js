@@ -91,30 +91,24 @@ export default class RoutineZoomed extends React.Component {
     const routine = this.props.routine;
 
     return (
-      <div style={style}>
+      <div>
         {this.showAlert()}
-        <Container>
-          <Row>
-            <Col style={containerStyle}>
-              <RoutineCard routine={routine} zoom={true}></RoutineCard>
-            </Col>
-            <Col style={containerStyle}>
-              {<Graph routine={routine}></Graph>}
-            </Col>
-          </Row>
-          <Row className="justifyContentMdCenter">
-            <Col style={containerStyle}>
-              <Calendar
-                style={{ justifyContent: "center" }}
-                routine={routine}
-              ></Calendar>
-            </Col>
-          </Row>
-        </Container>
+        <div
+          style={{
+            display: "grid",
+            gridTemplateColumns: "1fr 3fr",
+          }}
+        >
+          <RoutineCard routine={routine} zoom={true} />
+          <Calendar style={{ justifyContent: "center" }} routine={routine} />
+        </div>
+        <div style={gridStyle}>
+          <Graph routine={routine} />
+          <WeeklyBarChart routine={routine} />
+          <LastDays routine={routine} />
+          <CommentDistribution routine={routine} />
+        </div>
         {this.activateDeactivateButton()}
-        <WeeklyBarChart routine={routine}></WeeklyBarChart>
-        <LastDays routine={routine}></LastDays>
-        <CommentDistribution routine={routine}></CommentDistribution>
       </div>
     );
   }
@@ -158,8 +152,9 @@ function LastDays(props) {
     </Table>
   );
 }
-const style = {
-  backgroundColor: "#D3D3D3",
+const gridStyle = {
+  display: "grid",
+  gridTemplateColumns: "1fr 1fr",
 };
 
 const containerStyle = {
