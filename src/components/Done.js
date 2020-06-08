@@ -13,20 +13,24 @@ export default class Done extends React.Component {
     const month = getMonth();
     const dayOfMonth = getDayOfMonth();
     this.setState({
-      routines: getTodaysRoutines().filter(
+      routines: getTodaysRoutines(month, dayOfMonth).filter(
         (routine) => routine.done[month][dayOfMonth]
       ),
     });
   }
+  summary() {
+    if (this.state.routines.length === 0) return <h1>Nothing Done Yet</h1>;
+    return (
+      <div style={{ flexGrow: "1", height: "100vh" }}>
+        <PieChart></PieChart>
+        <Log></Log>
+      </div>
+    );
+  }
   render() {
-    // const routines = this.state.routines;
-
     return (
       <div style={flexContainerStyle}>
-        <div style={{ flexGrow: "1", height: "100vh" }}>
-          <PieChart></PieChart>
-          <Log></Log>
-        </div>
+        {this.summary()}
         <div style={{ flexGrow: "1", height: "100vh" }}>
           <MinutesSpent></MinutesSpent>
           <CompareDays></CompareDays>

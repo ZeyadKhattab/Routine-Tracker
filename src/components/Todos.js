@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import RoutineCard from "./RoutineCard";
 import {
   getTodaysRoutines,
@@ -9,11 +9,14 @@ import { getMonth, getDayOfMonth } from "../backend/helpers";
 import Modal from "react-bootstrap/Modal";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
+import DatePicker from "react-datepicker";
 
 export default class Todos extends React.Component {
   state = {
     routines: [],
     showModal: false,
+    month: getMonth(),
+    dayOfMonth: getDayOfMonth(),
   };
   Modal = () => {
     const handleSubmit = (e) => {
@@ -85,10 +88,10 @@ export default class Todos extends React.Component {
     );
   };
   componentDidMount() {
-    const month = getMonth();
-    const dayOfMonth = getDayOfMonth();
+    const month = this.state.month;
+    const dayOfMonth = this.state.dayOfMonth;
     this.setState({
-      routines: getTodaysRoutines().filter(
+      routines: getTodaysRoutines(month, dayOfMonth).filter(
         (routine) => !routine.done[month][dayOfMonth]
       ),
     });
@@ -97,11 +100,24 @@ export default class Todos extends React.Component {
     this.setState({ showModal: true });
     this.setState({ routineDoneName: routineName });
   };
+  updateDate = (date) => {
+    const month = date.getMonth();
+    const dayOfMonth = date.getDate() - 1;
+
+    this.setState({
+      month: date.getMonth(),
+      dayOfMonth: date.getDate() - 1,
+      routines: getTodaysRoutines(month, dayOfMonth).filter(
+        (routine) => !routine.done[month][dayOfMonth]
+      ),
+    });
+  };
   render() {
     const routines = this.state.routines;
 
     return (
       <React.Fragment>
+        <PickDate updateDate={this.updateDate} />
         <div style={flexContainerStyle}>
           {routines.map((routine) => (
             <RoutineCard
@@ -120,3 +136,19 @@ const flexContainerStyle = {
   display: "flex",
   flexWrap: "wrap",
 };
+function PickDate(props) {
+  const [startDate, setStartDate] = useState(new Date());
+  return (
+    <DatePicker
+      selected={startDate}
+      onChange={(date) => {
+        // if (date >= new Date()) {
+        //   alert("You are trying to compare with a date in the future");
+        //   return;
+        // }
+        setStartDate(date);
+        props.updateDate(date);
+      }}
+    />
+  );
+}
