@@ -14,6 +14,7 @@ export default class MinutesSpent extends React.Component {
   }
 
   render() {
+    const routines = this.props.routines;
     const state = this.props.state | 0;
     const showMetric = this.props.showMetric
       ? this.props.showMetric
@@ -24,7 +25,10 @@ export default class MinutesSpent extends React.Component {
     if (state === 2) {
       //months
       for (let month = 0; month <= this.state.month; month++) {
-        data.push([`Month ${month + 1}`, showMetric(month, -1, state)]);
+        data.push([
+          `Month ${month + 1}`,
+          showMetric(month, -1, state, routines),
+        ]);
       }
     } else {
       for (let day = numDays - 1; day >= 0; day--) {
@@ -47,7 +51,7 @@ export default class MinutesSpent extends React.Component {
         const dayOfMonth = date.getDate() - 1;
         data.push([
           `${month + 1}/${dayOfMonth + 1}`,
-          showMetric(month, dayOfMonth, state),
+          showMetric(month, dayOfMonth, state, routines),
         ]);
       }
     }

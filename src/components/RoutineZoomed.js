@@ -1,7 +1,8 @@
 import React from "react";
 import Alert from "./Alert";
-import Graph from "./Graph";
 import Button from "react-bootstrap/Button";
+import ButtonGroup from "react-bootstrap/ButtonGroup";
+
 import Table from "react-bootstrap/Table";
 import Chart from "react-google-charts";
 
@@ -9,13 +10,14 @@ import {
   deactivateRoutineByName,
   activateRoutineByName,
   deletRoutineByName,
+  getNumRoutinesDone,
+  getTimeSpent,
+  getPercentageDone,
 } from "../backend/routes";
 // import pic from "../assets/sports1.png";
 import Calendar from "./Calendar";
 import WeeklyBarChart from "./WeeklyBarChart";
-import Container from "react-bootstrap/Container";
-import Row from "react-bootstrap/Row";
-import Col from "react-bootstrap/Col";
+import MinutesSpent from "./MinutesSpent";
 import RoutineCard from "./RoutineCard";
 import { getMonth, getDayOfMonth, getDayOfWeek } from "../backend/helpers";
 export default class RoutineZoomed extends React.Component {
@@ -74,6 +76,60 @@ export default class RoutineZoomed extends React.Component {
       <h1>You still have to do it</h1>
     );
   };
+  statsForRoutine = () => {
+    // return <h1>Helol</h1>;
+    const routine = [this.props.routine];
+    return (
+      <div>
+        <ButtonGroup aria-label="Basic example">
+          <Button
+            variant="secondary"
+            onClick={() => this.setState({ state: 0 })}
+          >
+            Daily
+          </Button>
+          <Button
+            variant="secondary"
+            onClick={() => this.setState({ state: 1 })}
+          >
+            Weekly
+          </Button>
+          <Button
+            variant="secondary"
+            onClick={() => this.setState({ state: 2 })}
+          >
+            Monthly
+          </Button>
+        </ButtonGroup>
+        <ButtonGroup aria-label="Basic example">
+          <Button
+            variant="secondary"
+            onClick={() => this.setState({ showMetric: getNumRoutinesDone })}
+          >
+            Number Done
+          </Button>
+          <Button
+            variant="secondary"
+            onClick={() => this.setState({ showMetric: getTimeSpent })}
+          >
+            MinutesSpent
+          </Button>
+          <Button
+            variant="secondary"
+            onClick={() => this.setState({ showMetric: getPercentageDone })}
+          >
+            Percentage
+          </Button>
+        </ButtonGroup>
+
+        <MinutesSpent
+          state={this.state.state}
+          showMetric={this.state.showMetric}
+          routines={routine}
+        ></MinutesSpent>
+      </div>
+    );
+  };
   showAlert() {
     const routine = this.props.routine;
     const status = routine.todayStatus();
@@ -87,34 +143,30 @@ export default class RoutineZoomed extends React.Component {
         ></Alert>
       );
   }
+  state = { state: 1, showMetric: getNumRoutinesDone };
+
   render() {
     const routine = this.props.routine;
 
     return (
-      <div style={style}>
+      <div>
         {this.showAlert()}
-        <Container>
-          <Row>
-            <Col style={containerStyle}>
-              <RoutineCard routine={routine} zoom={true}></RoutineCard>
-            </Col>
-            <Col style={containerStyle}>
-              {<Graph routine={routine}></Graph>}
-            </Col>
-          </Row>
-          <Row className="justifyContentMdCenter">
-            <Col style={containerStyle}>
-              <Calendar
-                style={{ justifyContent: "center" }}
-                routine={routine}
-              ></Calendar>
-            </Col>
-          </Row>
-        </Container>
+        <div
+          style={{
+            display: "grid",
+            gridTemplateColumns: "1fr 3fr",
+          }}
+        >
+          <RoutineCard routine={routine} zoom={true} />
+          <Calendar style={{ justifyContent: "center" }} routine={routine} />
+        </div>
+        <div style={gridStyle}>
+          {this.statsForRoutine()}
+          <WeeklyBarChart routine={routine} />
+          <LastDays routine={routine} />
+          <CommentDistribution routine={routine} />
+        </div>
         {this.activateDeactivateButton()}
-        <WeeklyBarChart routine={routine}></WeeklyBarChart>
-        <LastDays routine={routine}></LastDays>
-        <CommentDistribution routine={routine}></CommentDistribution>
       </div>
     );
   }
@@ -158,15 +210,9 @@ function LastDays(props) {
     </Table>
   );
 }
-const style = {
-  backgroundColor: "#D3D3D3",
-};
-
-const containerStyle = {
-  // borderStyle: "solid",
-  padding: "5px",
-  margin: "20px",
-  borderRadius: "10px",
+const gridStyle = {
+  display: "grid",
+  gridTemplateColumns: "1fr 1fr",
 };
 
 function CommentDistribution(props) {
