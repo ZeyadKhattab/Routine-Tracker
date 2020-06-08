@@ -68,10 +68,13 @@ const getAcitveRoutines = () => {
   const dayOfMonth = getDayOfMonth();
   return ROUTINES.filter((routine) => routine.active[month][dayOfMonth]);
 };
-const getTodaysRoutines = () => {
-  const month = getMonth();
-  const dayOfMonth = getDayOfMonth();
-  const dayOfWeek = getDayOfWeek();
+const getTodaysRoutines = (
+  month = getMonth(),
+  dayOfMonth = getDayOfMonth()
+) => {
+  // const month = getMonth();
+  // const dayOfMonth = getDayOfMonth();
+  const dayOfWeek = getDayOfWeek(new Date(2020, month, dayOfMonth + 2)); //1=> 1 indexed, 1=> 4 am
   return ROUTINES.filter(
     (routine) => routine.active[month][dayOfMonth] && routine.days[dayOfWeek]
   );
