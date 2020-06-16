@@ -89,7 +89,7 @@ const getPercentageDone = (
     return (
       (getTodaysRoutines().filter((routine) => routine.done[month][dayOfMonth])
         .length /
-        routines.length) *
+        getTodaysRoutines().length) *
       100
     );
   else if (state === 1) {

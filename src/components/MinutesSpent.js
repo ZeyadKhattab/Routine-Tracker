@@ -26,7 +26,7 @@ export default class MinutesSpent extends React.Component {
       //months
       for (let month = 0; month <= this.state.month; month++) {
         data.push([
-          `Month ${month + 1}`,
+          new Date(2020, month).toString().split(" ")[1],
           showMetric(month, -1, state, routines),
         ]);
       }

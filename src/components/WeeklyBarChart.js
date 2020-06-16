@@ -25,15 +25,9 @@ export default class extends React.Component {
     );
   };
   render() {
-    return (
-      <div>
-        <h2>This is how you have been doing in the last {numWeeks} weeks</h2>
-        {this.getGraph()}
-      </div>
-    );
+    return <div>{this.getGraph()}</div>;
   }
 }
-const numWeeks = 6;
 const getData = (routine) => {
   let time = new Date().getTime();
   let x = [],
@@ -51,7 +45,7 @@ const getData = (routine) => {
     let date = new Date(time);
     const month = date.getMonth();
     const dayOfMonth = date.getDate() - 1;
-    y.push(routine.timeNeeded[month][dayOfMonth]);
+    y.push(parseInt(routine.timeNeeded[month][dayOfMonth]));
     let dayOfWeek = date.getDay();
     x.push(days[dayOfWeek]);
     time -= 24 * 60 * 60 * 1000;

@@ -42,7 +42,12 @@ class App extends React.Component {
           now={getPercentageDone()}
           label={`${getPercentageDone()}%`}
         />
-        {this.state.todo && <Todos updateParent={this.update}></Todos>}
+        {this.state.todo && (
+          <Todos
+            updateParent={this.update}
+            toggleParent={() => this.setState({ todo: false })}
+          ></Todos>
+        )}
         {!this.state.todo && <Done></Done>}
       </div>
     );

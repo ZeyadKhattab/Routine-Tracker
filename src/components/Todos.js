@@ -114,7 +114,16 @@ export default class Todos extends React.Component {
   };
   render() {
     const routines = this.state.routines;
-
+    if (routines.length === 0) {
+      return (
+        <div>
+          <h1>Congrats, you have completed all routines for today</h1>
+          <Button onClick={() => this.props.toggleParent()}>
+            See what your day was like
+          </Button>
+        </div>
+      );
+    }
     return (
       <React.Fragment>
         <PickDate updateDate={this.updateDate} />
