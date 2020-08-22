@@ -1,3 +1,22 @@
+
+### Routine Tracker ###
+The main aim of this project is to help you keep track of your weekly routines and keep track of your recent history to keep you motivated.
+
+![](https://img.techpowerup.org/200822/routine-tracker.png)
+
+## Features ##
+- Add a routine (Specify name, schedule, and image)
+- Mark a routine as done
+- View history of a particular routine
+- View statistics for how well you have been doing overall on your routines
+
+## Contribution ##
+- There is a lot of ideas that I wanted to implement (and improve UI), but didn't have much time, you can find many of my ideas in the issues and project tabs. If you would like to contribute, feel free to comment on any of the open issues or to send a pull request.
+
+
+### Technical details ###
+
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
