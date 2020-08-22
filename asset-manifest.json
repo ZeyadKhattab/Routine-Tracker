@@ -1,25 +1,25 @@
 {
   "files": {
-    "main.css": "/logger-react/static/css/main.d1b05096.chunk.css",
-    "main.js": "/logger-react/static/js/main.8aac1494.chunk.js",
-    "main.js.map": "/logger-react/static/js/main.8aac1494.chunk.js.map",
-    "runtime-main.js": "/logger-react/static/js/runtime-main.af8ab657.js",
-    "runtime-main.js.map": "/logger-react/static/js/runtime-main.af8ab657.js.map",
-    "static/css/2.60d9b82a.chunk.css": "/logger-react/static/css/2.60d9b82a.chunk.css",
-    "static/js/2.0a6a5ed9.chunk.js": "/logger-react/static/js/2.0a6a5ed9.chunk.js",
-    "static/js/2.0a6a5ed9.chunk.js.map": "/logger-react/static/js/2.0a6a5ed9.chunk.js.map",
-    "index.html": "/logger-react/index.html",
-    "precache-manifest.c820becfc0aac77331f805d2bedb4287.js": "/logger-react/precache-manifest.c820becfc0aac77331f805d2bedb4287.js",
-    "service-worker.js": "/logger-react/service-worker.js",
-    "static/css/2.60d9b82a.chunk.css.map": "/logger-react/static/css/2.60d9b82a.chunk.css.map",
-    "static/css/main.d1b05096.chunk.css.map": "/logger-react/static/css/main.d1b05096.chunk.css.map",
-    "static/js/2.0a6a5ed9.chunk.js.LICENSE.txt": "/logger-react/static/js/2.0a6a5ed9.chunk.js.LICENSE.txt"
+    "main.css": "/routine-tracker/static/css/main.d1b05096.chunk.css",
+    "main.js": "/routine-tracker/static/js/main.4af33ca3.chunk.js",
+    "main.js.map": "/routine-tracker/static/js/main.4af33ca3.chunk.js.map",
+    "runtime-main.js": "/routine-tracker/static/js/runtime-main.9534f1ec.js",
+    "runtime-main.js.map": "/routine-tracker/static/js/runtime-main.9534f1ec.js.map",
+    "static/css/2.60d9b82a.chunk.css": "/routine-tracker/static/css/2.60d9b82a.chunk.css",
+    "static/js/2.f0c434dc.chunk.js": "/routine-tracker/static/js/2.f0c434dc.chunk.js",
+    "static/js/2.f0c434dc.chunk.js.map": "/routine-tracker/static/js/2.f0c434dc.chunk.js.map",
+    "index.html": "/routine-tracker/index.html",
+    "precache-manifest.e63235f8b265984c466aae3db4ff5b76.js": "/routine-tracker/precache-manifest.e63235f8b265984c466aae3db4ff5b76.js",
+    "service-worker.js": "/routine-tracker/service-worker.js",
+    "static/css/2.60d9b82a.chunk.css.map": "/routine-tracker/static/css/2.60d9b82a.chunk.css.map",
+    "static/css/main.d1b05096.chunk.css.map": "/routine-tracker/static/css/main.d1b05096.chunk.css.map",
+    "static/js/2.f0c434dc.chunk.js.LICENSE.txt": "/routine-tracker/static/js/2.f0c434dc.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
-    "static/js/runtime-main.af8ab657.js",
+    "static/js/runtime-main.9534f1ec.js",
     "static/css/2.60d9b82a.chunk.css",
-    "static/js/2.0a6a5ed9.chunk.js",
+    "static/js/2.f0c434dc.chunk.js",
     "static/css/main.d1b05096.chunk.css",
-    "static/js/main.8aac1494.chunk.js"
+    "static/js/main.4af33ca3.chunk.js"
   ]
 }
